@@ -39,7 +39,7 @@ Use a unique lowercase kebab-case name; add `-2`, `-3`, and so on for collisions
 
 Create contiguous `AC-Q01` through at most `AC-Q05` and exactly one `T-Q01`. The one `T-Q01` covers implementation, focused tests, relevant regression, combined review, and acceptance verification. Keep the initial file within 575 English words or about 800 CJK characters. Do not create or update `PLAN.md`, `LESSONS.md`, numbered feature files, standard authority documents, or a separate `verification.md`.
 
-Natural-language input produces the complete file and immediately continues below; no second approval is required. A named file must have `Mode: forced-quick` and a valid status. `READY` or `IN_PROGRESS` executes, `BLOCKED` resumes only after its recorded condition changes, and `DONE` stays closed.
+Natural-language input produces the complete file and immediately continues below; no second approval is required. Before resuming a named file, validate its path under `specs/quick/`, required metadata, exact section order, one to five contiguous `AC-Q*`, exactly one `T-Q01`, and initial size limit; otherwise set `BLOCKED` before Q2. `READY` or `IN_PROGRESS` executes, `BLOCKED` resumes only after its recorded condition changes, and `DONE` stays closed.
 
 ## Q1: Establish contract and boundary
 
