@@ -211,7 +211,7 @@ Final result: `PASS — strict security behavior preserved`
 
 ## GREEN AI conclusion
 
-The updated router reduces bounded stable-contract work to one artifact and four stages while keeping security-, contract-, data-, infrastructure-, and ambiguity-sensitive work on the unchanged standard path. The compact instruction load is 1,143 words (`SKILL.md` plus `quick-execution.md`), below the 1,600-word AI budget.
+The updated router reduces bounded stable-contract work to one artifact and four stages while keeping security-, contract-, data-, infrastructure-, and ambiguity-sensitive work on the unchanged standard path. After explicit status routing and retention/lifecycle review fixes, the compact instruction load is 1,288 words (`SKILL.md` plus `quick-execution.md`), below the 1,600-word AI budget.
 
 ## RED PRD method
 
@@ -417,7 +417,7 @@ Final result: `PASS — strict planning and blocking gates preserved`
 
 ## GREEN PRD conclusion
 
-The updated router makes compact planning generic rather than media-specific: both a Vue lifecycle change and a Flask response change produce one file, one task, and at most five outcomes, while the security-sensitive endpoint remains standard and blocked. `$atu-prd` compact instructions are 1,177 words; the combined compact `$atu-prd` + `$atu-ai` instruction load is 2,320 words, below the 3,000-word budget.
+The updated router makes compact planning generic rather than media-specific: both a Vue lifecycle change and a Flask response change produce one file, one task, and at most five outcomes, while the security-sensitive endpoint remains standard and blocked. After final trigger coverage fixes, `$atu-prd` compact instructions are 1,185 words; the combined compact `$atu-prd` + `$atu-ai` instruction load is 2,473 words, below the 3,000-word budget.
 
 ## Cross-domain end-to-end regressions
 
@@ -465,8 +465,8 @@ Exact model tokens and workflow wall time are unavailable inside a Skill source 
 
 | Proxy | Standard baseline | Compact result/limit | Ratio or result |
 | --- | ---: | ---: | ---: |
-| Mandatory `$atu-prd` + `$atu-ai` instruction words | 12,853 | 2,320 | 18.1% — PASS ≤35% |
-| Matched personal-report feature/ledger output words | 1,877 | initial quick spec ≤575 English words | ≤30.6% — PASS ≤35% |
+| Mandatory `$atu-prd` + `$atu-ai` instruction words | 12,853 | 2,473 | 19.2% — PASS ≤35% |
+| Matched personal-report feature/ledger output words | 1,877 | observed complete compact artifact: 543 English words | 28.9% — PASS ≤35% |
 | Specification/execution artifacts | 5 standard spec files plus ledger | 1 compact authority/evidence file | 16.7% |
 | Active tasks in matched fixture | 7 | 1 | 14.3% |
 | Acceptance IDs in matched fixture | 13 | 4 in evaluated compact result; maximum 5 | 30.8%; maximum 38.5% |
@@ -474,7 +474,9 @@ Exact model tokens and workflow wall time are unavailable inside a Skill source 
 | Default independent review/QA contexts | 3 | 0 | eliminated; strict escalation if needed |
 | Preinitialized `spec_contract` fields in matched fixture | 7 | 0 | eliminated from compact mode |
 
-The compact output comparison is conservative: the 1,877-word baseline excludes shared `PLAN.md` and `LESSONS.md`, while the compact cap includes requirements, design, task, and handoff content. Matched prompts are the same classification requests; exact aggregate prompt/output tokens and real orchestration wall time remain a fresh-task measurement boundary. The structural proxies predict a material reduction without skipping tests or external/manual evidence.
+The compact output comparison is conservative: the 1,877-word baseline excludes shared `PLAN.md` and `LESSONS.md`, while the observed compact artifact includes requirements, design, task, and handoff content. Matched classification prompts were equivalent, but aggregate prompt/output tokens, tool-call counts, and real orchestration wall time were not captured. Those exact performance gates remain a fresh-task measurement boundary and are not reported as PASS.
+
+Independent task `/root/green_prd_output_budget` then generated a complete settings-toggle compact artifact under the final limit. It contained every required section, one `T-Q01`, three acceptance criteria, explicit error/compatibility/test/rollback/escalation boundaries, and measured 543 whitespace-separated English words. Result: `PASS ≤575`.
 
 ## Design acceptance audit
 
@@ -485,6 +487,17 @@ The compact output comparison is conservative: the 1,877-word baseline excludes 
 | 3. Strict triggers override small/compact language | security, schema, payment, webhook/queue evaluations | PASS |
 | 4. Hidden strict trigger yields `ESCALATED` without discarded edits | ambiguity/escalation scenarios 2 and 3 | PASS |
 | 5. Strict safety, identity, review, QA, recovery, and evidence gates remain | unchanged `spec-contract.md` and N1-N8; strict invariant validator; strict behavior agents | PASS |
-| 6. Compact instruction/output/transition/artifact budgets | performance table above | PASS for deterministic proxies; wall time MANUAL REQUIRED |
+| 6. Compact instruction/output/transition/artifact budgets | performance table above | PARTIAL — deterministic instruction/artifact/transition/context proxies PASS; aggregate prompt/output, tool calls, and wall time MANUAL REQUIRED |
 | 7. Source Skills and installed plugin pass validators | fresh command output and installed-cache hash audit recorded at final verification | PENDING until final verification |
 | 8. Fresh task invokes real `$atu-prd` then `$atu-ai` | current task cannot hot reload the installed plugin | MANUAL REQUIRED — open a new Codex task |
+
+## Independent review remediation
+
+Independent review `/root/final_code_review` initially returned `NEEDS_FIX` with no Critical findings and five Important findings. The remediation is evidence-backed:
+
+- Added retention/data-lifecycle to both PRD and AI router/reference strict-trigger lists. Independent scenario `/root/review_fix_retention` classified a one-constant 30-day → 365-day retention change as standard in both entries despite compact pressure: `PASS`.
+- Aligned the approved design's compact schema to the implemented producer/consumer headings and added ordered-schema assertions.
+- Added normalized SHA-256 golden checks for the extracted AI standard workflow, all N1-N8 references, and the unchanged PRD `spec-contract.md`; added complete strict-trigger, dirty-work, status-route, local-link, and ordered-schema assertions.
+- Replaced the configured output cap in the performance table with the observed 543-word complete artifact and changed unavailable aggregate prompt/output, tool-call, and wall-time gates from proxy PASS to `MANUAL REQUIRED`.
+- Downgraded design status until source/cache verification is complete and retained fresh-task invocation/benchmarking as explicit manual boundaries.
+- Added explicit compact status routing. Independent scenario `/root/review_fix_statuses` verified only `READY`/`IN_PROGRESS` execute, `BLOCKED` reports without Q2, `ESCALATED` routes standard PRD, and `DONE` remains closed without reopening `T-Q01`: `PASS`.

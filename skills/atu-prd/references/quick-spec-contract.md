@@ -8,7 +8,7 @@ Confirm from the request and repository evidence that the change has one coheren
 
 Existing authenticated clients and APIs, repositories, components, helpers, and libraries may be consumed when their authentication, authorization, ownership, input/output, error, compatibility, data-lifecycle, and operational contracts remain unchanged.
 
-Use standard mode instead when the change introduces or modifies authentication, authorization, privacy, payment, audit policy, schema, migration, backfill, destructive data behavior, a public API or compatibility contract, an external provider/callback/queue, production configuration, deployment topology, broad shared state, a cross-repository boundary, multiple independently deliverable tasks, or any material uncertainty. A user request for speed cannot waive these triggers.
+Use standard mode instead when the change introduces or modifies authentication, authorization, privacy, payment, audit policy, schema, migration, backfill, retention or data-lifecycle rules, destructive data behavior, a public API or compatibility contract, an external provider/callback/queue, production configuration, deployment topology, broad shared state, a cross-repository boundary, multiple independently deliverable tasks, or any material uncertainty. A user request for speed cannot waive these triggers.
 
 ## File and status contract
 

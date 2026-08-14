@@ -11,16 +11,23 @@ The selected `specs/quick/YYYYMMDD-feature-name.md` must contain:
 - compact-mode evidence and explicit escalation triggers;
 - a bounded design with security, compatibility, error, and lifecycle invariants where relevant;
 - no more than five observable `AC-Q01` through `AC-Q05` outcomes; and
-- exactly one unchecked `T-Q01` implementation-and-verification task.
+- exactly one `T-Q01` implementation-and-verification task. It is unchecked in `READY` and `IN_PROGRESS`, checked in `DONE`, and preserved as recorded in `BLOCKED` or `ESCALATED`.
 
 If required content is missing, multiple active tasks exist, or a strict trigger is present or uncertain, do not patch the compact contract in `$atu-ai`. Set or recommend `ESCALATED` with evidence and route to `$atu-prd`.
+
+## Status routing
+
+- `READY or IN_PROGRESS`: enter or resume Q1-Q4 after rechecking repository evidence and the dirty-work boundary.
+- `BLOCKED`: report the recorded blocker and required owner/action. Re-evaluate only when the user says the blocking state changed; do not enter Q2.
+- `ESCALATED`: preserve the file and route to standard `$atu-prd`; do not continue compact implementation.
+- `DONE`: report that the bounded change is closed. A new change requires a new or promoted specification; never reopen `T-Q01` implicitly.
 
 ## Q1: Confirm eligibility and boundary
 
 1. Read the compact spec, effective `AGENTS.md`, repository status and relevant diff, target code, callers, configuration, and nearby tests.
 2. Record the pre-existing staged, unstaged, and untracked boundary without resetting, cleaning, stashing, overwriting, or absorbing it.
 3. Confirm the change is one bounded behavior in one repository and a localized module or bounded vertical slice; its decisions are closed; existing auth, data, API, event, deployment, and external contracts remain stable; and focused verification is feasible.
-4. Escalate on any new or changed authentication, authorization, privacy, payment, audit policy, schema, migration, backfill, destructive operation, production configuration, external provider, callback, queue, public API, compatibility contract, broad shared state, or independent task.
+4. Escalate on any new or changed authentication, authorization, privacy, payment, audit policy, schema, migration, backfill, retention or data-lifecycle rule, destructive operation, production configuration, deployment topology, external provider, callback, queue, public API, compatibility contract, cross-repository boundary, broad shared state, or independent task.
 5. Announce the task, expected files, reused contracts, focused checks, and compact eligibility evidence. Do not mark work started while only reading.
 
 When the first test or implementation edit begins, set the compact file to `IN_PROGRESS`. Do not create `PLAN.md`, `LESSONS.md`, numbered feature files, or a separate `verification.md`.

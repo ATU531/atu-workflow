@@ -3,7 +3,7 @@
 ## Status
 
 - Date: 2026-08-14
-- State: implemented and locally verified; fresh-task `$` entry smoke remains an explicit manual boundary
+- State: implementation complete; final source/cache verification is pending, and fresh-task `$` entry smoke plus live token/time benchmarking remain explicit manual boundaries
 - Plugin source: `C:\Users\17321\plugins\atu-workflow`
 - Scope: `$atu-prd` and `$atu-ai` orchestration only
 
@@ -130,36 +130,47 @@ Required structure:
 ```markdown
 # Feature name
 
-## Status
-READY | IN_PROGRESS | DONE | ESCALATED | BLOCKED
+- Status: READY | IN_PROGRESS | DONE | ESCALATED | BLOCKED
+- Mode: compact
+- Date: YYYY-MM-DD
+- Source: request, named file, and repository evidence
 
-## Goal and scope
-- Goal
+## Goal
+- Observable outcome and user value
+
+## Scope
 - In scope
 - Out of scope
-- Reused stable contracts/components
 
-## Compact-mode decision
+## Reused contracts and evidence
+- Existing stable components, interfaces, helpers, and repository evidence
+
+## Compact eligibility and escalation triggers
 - Eligibility evidence
-- Checked risks
-- Escalation triggers
+- Concrete strict-mode triggers
 
-## Design
-- Data/interaction flow
-- Expected change locations
-- Required security, compatibility, error, and lifecycle invariants
+## Bounded design
+- Affected boundary and behavior flow
+- Security, compatibility, error, lifecycle, verification, and rollback invariants where relevant
 
 ## Acceptance criteria
-- AC-Q01 ... AC-Q05
+- [ ] AC-Q01 ... AC-Q05
 
-## Implementation task
+## Task
 - [ ] T-Q01: one coherent implementation-and-verification task
 
-## Verification result
-- Changed files
+## Execution evidence
+- Pre-existing changes
+- Changed files and diff scope
 - Commands and exact outcomes
-- Acceptance status
+- Acceptance matrix
 - Manual/external boundaries
+
+## Open questions
+None.
+
+## Handoff
+`$atu-ai specs/quick/YYYYMMDD-feature-name.md`
 ```
 
 Rules:

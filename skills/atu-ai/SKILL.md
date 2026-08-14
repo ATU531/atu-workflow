@@ -18,9 +18,9 @@ Implement an approved ATU specification using exactly one execution mode. Do not
 
 ## Select one mode
 
-Use the **compact workflow** only for an approved file under `specs/quick/` that contains the required compact status, design, acceptance, and single-task contract. An explicit compact-spec path wins; otherwise auto-select only when exactly one compact file is `READY`. Re-check eligibility against repository evidence before editing.
+Use the **compact workflow** only for an approved file under `specs/quick/` that contains the required compact status, design, acceptance, and single-task contract. An explicit path selects the artifact but never overrides eligibility or status; otherwise auto-select only when exactly one compact file is `READY`. Re-check eligibility against repository evidence before editing. Only `READY` or `IN_PROGRESS` enters Q1-Q4. Report a `BLOCKED` file's current blocker without editing, route `ESCALATED` to standard `$atu-prd`, and treat `DONE` as closed rather than reopening it.
 
-Use the **standard workflow** for `specs/PLAN.md`, numbered feature specifications, a user-forced strict run, multiple independently deliverable tasks, or any new/changed authentication, authorization, privacy, payment, schema, migration, backfill, destructive-data, public API, external-service, queue, production-configuration, deployment-topology, cross-repository, or material cross-module contract. Use it whenever classification is uncertain.
+Use the **standard workflow** for `specs/PLAN.md`, numbered feature specifications, a user-forced strict run, multiple independently deliverable tasks, or any new/changed authentication, authorization, privacy, payment, audit policy, schema, migration, backfill, retention or data-lifecycle rule, destructive-data, public API, external-service, queue, production-configuration, deployment-topology, cross-repository, or material cross-module contract. Use it whenever classification is uncertain.
 
 Consuming an existing authenticated API, repository abstraction, component, or library may remain compact when its security, ownership, protocol, data-lifecycle, and failure contracts stay unchanged.
 

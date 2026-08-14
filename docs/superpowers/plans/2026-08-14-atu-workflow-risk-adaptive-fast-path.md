@@ -288,9 +288,11 @@ Repeat the cachebuster/install/list verification. Confirm the installed version 
 
 Use a synthetic/read-only copy of the personal-report play/download request plus generic CRUD, report-layout, backend, schema-migration, payment, and ambiguity scenarios. Do not modify `D:\Workspace\x_insight_projcet`.
 
-- [x] **Step 2: Measure performance proxies**
+- [ ] **Step 2: Measure performance proxies**
 
 Record mandatory loaded-document words, prompt/output words, tool calls, independent contexts, transitions, and artifacts for matched RED/GREEN cases. Require compact instructions at most 3,000 words, prompt/output at most 35% baseline, at most four transitions, one task, one artifact, and no default independent review/QA context.
+
+Partial result: instruction words, observed artifact words, transitions, tasks, artifacts, hashes, and independent-context counts are recorded. Aggregate prompt/output tokens, tool-call counts, and live orchestration wall time require a newly created Codex task and remain `MANUAL REQUIRED`.
 
 - [x] **Step 3: Update operator documentation**
 
