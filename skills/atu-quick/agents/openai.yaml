@@ -1,0 +1,7 @@
+interface:
+  display_name: "ATU Quick"
+  short_description: "Force one fast specification-to-implementation workflow"
+  default_prompt: "Use $atu-quick to implement this request through the forced fast path."
+
+policy:
+  allow_implicit_invocation: false
