@@ -22,7 +22,7 @@ Use **compact mode** only when repository evidence supports all of these conditi
 - one bounded behavior in one repository and one localized module or coherent vertical slice;
 - exactly one implementation-and-verification task and at most five observable acceptance outcomes;
 - closed product and technical decisions, stable existing architecture/contracts, focused verification, and localized rollback; and
-- no new or changed authentication, authorization, privacy, payment, audit policy, schema, migration, backfill, retention or data-lifecycle rule, destructive data operation, public API/compatibility contract, external service/callback/queue, production configuration, deployment topology, broad shared state, cross-repository boundary, or independently deliverable task.
+- no new or changed authentication, authorization, privacy, payment, audit policy, schema, migration, backfill, retention or data-lifecycle rule, destructive data operation, public API/compatibility contract, external service/callback/queue, production configuration, deployment topology, broad shared state, cross-repository boundary, or independently deliverable task, and verification can remain bounded and explicit. If verification cannot remain bounded and explicit, use standard mode.
 
 Consuming an existing authenticated API, repository abstraction, component, or library remains compact-eligible when its security, ownership, protocol, data-lifecycle, and failure contracts stay unchanged.
 

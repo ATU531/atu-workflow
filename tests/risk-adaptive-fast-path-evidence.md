@@ -211,7 +211,7 @@ Final result: `PASS — strict security behavior preserved`
 
 ## GREEN AI conclusion
 
-The updated router reduces bounded stable-contract work to one artifact and four stages while keeping security-, contract-, data-, infrastructure-, and ambiguity-sensitive work on the unchanged standard path. After explicit status routing and retention/lifecycle review fixes, the compact instruction load is 1,288 words (`SKILL.md` plus `quick-execution.md`), below the 1,600-word AI budget.
+The updated router reduces bounded stable-contract work to one artifact and four stages while keeping security-, contract-, data-, infrastructure-, and ambiguity-sensitive work on the unchanged standard path. After final strict-trigger and status-routing review fixes, the compact instruction load is 1,307 words (`SKILL.md` plus `quick-execution.md`), below the 1,600-word AI budget.
 
 ## RED PRD method
 
@@ -417,7 +417,7 @@ Final result: `PASS — strict planning and blocking gates preserved`
 
 ## GREEN PRD conclusion
 
-The updated router makes compact planning generic rather than media-specific: both a Vue lifecycle change and a Flask response change produce one file, one task, and at most five outcomes, while the security-sensitive endpoint remains standard and blocked. After final trigger coverage fixes, `$atu-prd` compact instructions are 1,185 words; the combined compact `$atu-prd` + `$atu-ai` instruction load is 2,473 words, below the 3,000-word budget.
+The updated router makes compact planning generic rather than media-specific: both a Vue lifecycle change and a Flask response change produce one file, one task, and at most five outcomes, while the security-sensitive endpoint remains standard and blocked. After final trigger coverage fixes, `$atu-prd` compact instructions are 1,210 words; the combined compact `$atu-prd` + `$atu-ai` instruction load is 2,517 words, below the 3,000-word budget.
 
 ## Cross-domain end-to-end regressions
 
@@ -465,8 +465,8 @@ Exact model tokens and workflow wall time are unavailable inside a Skill source 
 
 | Proxy | Standard baseline | Compact result/limit | Ratio or result |
 | --- | ---: | ---: | ---: |
-| Mandatory `$atu-prd` + `$atu-ai` instruction words | 12,853 | 2,473 | 19.2% — PASS ≤35% |
-| Matched personal-report feature/ledger output words | 1,877 | observed complete compact artifact: 543 English words | 28.9% — PASS ≤35% |
+| Mandatory `$atu-prd` + `$atu-ai` instruction words | 12,853 | 2,517 | 19.6% — PASS ≤35% |
+| Matched personal-report feature/ledger output words | 1,877 | observed matched compact artifact: 469 English words | 25.0% — PASS ≤35% |
 | Specification/execution artifacts | 5 standard spec files plus ledger | 1 compact authority/evidence file | 16.7% |
 | Active tasks in matched fixture | 7 | 1 | 14.3% |
 | Acceptance IDs in matched fixture | 13 | 4 in evaluated compact result; maximum 5 | 30.8%; maximum 38.5% |
@@ -474,7 +474,17 @@ Exact model tokens and workflow wall time are unavailable inside a Skill source 
 | Default independent review/QA contexts | 3 | 0 | eliminated; strict escalation if needed |
 | Preinitialized `spec_contract` fields in matched fixture | 7 | 0 | eliminated from compact mode |
 
-The compact output comparison is conservative: the 1,877-word baseline excludes shared `PLAN.md` and `LESSONS.md`, while the observed compact artifact includes requirements, design, task, and handoff content. Matched classification prompts were equivalent, but aggregate prompt/output tokens, tool-call counts, and real orchestration wall time were not captured. Those exact performance gates remain a fresh-task measurement boundary and are not reported as PASS.
+The compact output comparison is conservative: the 1,877-word baseline excludes shared `PLAN.md` and `LESSONS.md`, while the observed compact artifact includes requirements, design, task, and handoff content. The exact matched compact artifact is preserved at [`fixtures/personal-report-video-actions-compact.md`](fixtures/personal-report-video-actions-compact.md) and is deterministically checked for exact headings, 1 task, 1–5 criteria, and the 575-word budget.
+
+Exact matched compact-generation prompt:
+
+```text
+Read the updated skill at C:\Users\17321\plugins\atu-workflow\skills\atu-prd\SKILL.md and every reference it requires for the selected mode. Analyze this synthetic request read-only; do not write files or invoke external systems. Report exact specification artifacts, document/task counts, stages, open-question behavior, and handoff you would produce. Include the complete compact specification if compact mode is selected. Also judge whether the output is proportionate for the request.
+
+Repository facts: one Git repository with AGENTS.md, one existing Vue report page, an existing authenticated Axios client, and protected Blob play/download endpoints already verified and stable. Request: add two buttons to the existing page: one opens a non-autoplay video dialog; one downloads using the server filename. Revoke object URLs on close/unmount. No API, auth, schema, public contract, dependency, deployment, or external-service change. Decisions are closed and focused component/browser verification is feasible. The user wants the smallest reviewable implementation specification, not implementation.
+```
+
+The separate settings-toggle budget probe remains preserved in the independent-agent result: its complete artifact measured 543 words. Matched classification prompts were equivalent, but aggregate prompt/output tokens, tool-call counts, and real orchestration wall time were not captured. Those exact performance gates remain a fresh-task measurement boundary and are not reported as PASS.
 
 Independent task `/root/green_prd_output_budget` then generated a complete settings-toggle compact artifact under the final limit. It contained every required section, one `T-Q01`, three acceptance criteria, explicit error/compatibility/test/rollback/escalation boundaries, and measured 543 whitespace-separated English words. Result: `PASS ≤575`.
 
@@ -498,6 +508,38 @@ Independent review `/root/final_code_review` initially returned `NEEDS_FIX` with
 - Added retention/data-lifecycle to both PRD and AI router/reference strict-trigger lists. Independent scenario `/root/review_fix_retention` classified a one-constant 30-day → 365-day retention change as standard in both entries despite compact pressure: `PASS`.
 - Aligned the approved design's compact schema to the implemented producer/consumer headings and added ordered-schema assertions.
 - Added normalized SHA-256 golden checks for the extracted AI standard workflow, all N1-N8 references, and the unchanged PRD `spec-contract.md`; added complete strict-trigger, dirty-work, status-route, local-link, and ordered-schema assertions.
-- Replaced the configured output cap in the performance table with the observed 543-word complete artifact and changed unavailable aggregate prompt/output, tool-call, and wall-time gates from proxy PASS to `MANUAL REQUIRED`.
+- Replaced the configured output cap in the performance table with the preserved 469-word matched personal-report artifact; retained the separate observed 543-word settings budget probe; and changed unavailable aggregate prompt/output, tool-call, and wall-time gates from proxy PASS to `MANUAL REQUIRED`.
 - Downgraded design status until source/cache verification is complete and retained fresh-task invocation/benchmarking as explicit manual boundaries.
 - Added explicit compact status routing. Independent scenario `/root/review_fix_statuses` verified only `READY`/`IN_PROGRESS` execute, `BLOCKED` reports without Q2, `ESCALATED` routes standard PRD, and `DONE` remains closed without reopening `T-Q01`: `PASS`.
+
+Exact retention regression prompt:
+
+```text
+Read the current updated local skills at C:\Users\17321\plugins\atu-workflow\skills\atu-prd\SKILL.md and C:\Users\17321\plugins\atu-workflow\skills\atu-ai\SKILL.md plus only the selected mode references. Read-only evaluation; do not write files or invoke external systems. Scenario: one repository, one endpoint, no schema/config/deploy/public API/auth changes, but the request changes personal-data retention from 30 to 365 days and changes when deletion jobs purge records. The caller demands compact because the code diff is one constant and one test. Report PRD and AI mode, strict trigger, required planning/evidence behavior, and whether compact pressure succeeds. PASS only if retention/data-lifecycle change is standard despite the tiny diff.
+```
+
+Observed behavior, verbatim excerpts:
+
+```text
+PASS
+PRD mode: Standard. Changing retention from 30 to 365 days and altering purge timing explicitly changes a retention/data-lifecycle rule.
+AI mode: Standard. Retention/data-lifecycle changes are direct standard-workflow triggers.
+Compact pressure: Fails. One constant and one test remain standard.
+```
+
+Exact status-routing regression prompt:
+
+```text
+Read the current updated C:\Users\17321\plugins\atu-workflow\skills\atu-ai\SKILL.md and its quick execution reference. Read-only evaluation; do not write files or invoke external systems. Evaluate four explicit compact paths whose files are otherwise valid: (1) READY with unchecked T-Q01, (2) IN_PROGRESS with unchecked T-Q01, (3) BLOCKED with recorded browser credential blocker, (4) ESCALATED with recorded schema trigger, (5) DONE with checked T-Q01 and passing evidence. Report whether each enters Q1-Q4, is resumed/reported/routed/closed, and whether any task checkbox is implicitly reopened or malformed. PASS only if only READY/IN_PROGRESS may execute, BLOCKED reports without Q2, ESCALATED routes standard PRD, and DONE stays closed.
+```
+
+Observed behavior, verbatim result:
+
+```text
+PASS
+READY, unchecked: Enters Q1, then Q2-Q4 if Q1 remains eligible; executes.
+IN_PROGRESS, unchecked: Resumes Q1-Q4 after boundary/evidence recheck.
+BLOCKED: Does not enter Q1-Q4, specifically no Q2; reports blocker plus required owner/action.
+ESCALATED: Does not enter Q1-Q4; routes to standard $atu-prd.
+DONE, checked: Does not enter Q1-Q4; remains closed and is never implicitly reopened.
+```

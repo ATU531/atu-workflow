@@ -29,10 +29,14 @@ def require_local_links(source: Path) -> None:
         require((source.parent / local_target).is_file(), f"broken link in {source}: {target}")
 
 
-def require_ordered_tokens(text: str, tokens: tuple[str, ...], label: str) -> None:
+def require_exact_heading_order(text: str, tokens: tuple[str, ...], label: str) -> None:
+    headings = [line.strip() for line in text.splitlines() if re.fullmatch(r"## .+", line.strip())]
     cursor = -1
     for token in tokens:
-        position = text.find(token, cursor + 1)
+        try:
+            position = headings.index(token, cursor + 1)
+        except ValueError:
+            position = -1
         require(position > cursor, f"{label} missing or out of order: {token}")
         cursor = position
 
@@ -51,6 +55,7 @@ def require_strict_triggers(path: Path) -> None:
         "retention or data lifecycle",
         "destructive",
         "public api",
+        "compatibility",
         "external",
         "queue",
         "production configuration",
@@ -62,6 +67,14 @@ def require_strict_triggers(path: Path) -> None:
     require(
         "independently deliverable" in canonical or "independent task" in canonical,
         f"strict independent-task trigger missing from {path}",
+    )
+    require(
+        "broad shared state" in canonical or "material cross module" in canonical,
+        f"strict shared-state trigger missing from {path}",
+    )
+    require(
+        "verification cannot remain bounded and explicit" in canonical,
+        f"strict unbounded-verification trigger missing from {path}",
     )
     require("uncertain" in canonical or "uncertainty" in canonical, f"strict uncertainty trigger missing from {path}")
 
@@ -77,6 +90,7 @@ STRICT_GOLDEN_SHA256 = {
     "skills/atu-ai/references/N7-context.md": "843c5bf46366c04c02b5753d7b346f1a3fa9076870b2417aa8c7fcbdde8f8361",
     "skills/atu-ai/references/N8-finish.md": "5620665b3aa64860c185acac10b6ab174bb23aa02354fd75b8215c5f947009f2",
     "skills/atu-prd/references/spec-contract.md": "654a8c163b8964d987b66fcd7003c2ff35a408396c27060cd614fcf42a635c8c",
+    "skills/atu-prd/references/standard-workflow.md": "8d9c43b74935e70894896fa8aba62bf4307ef498d9e5634f59408178205ede95",
 }
 
 
@@ -196,9 +210,17 @@ def validate_prd() -> None:
         "## Open questions",
         "## Handoff",
     )
-    require_ordered_tokens(quick, compact_headings, "quick PRD schema")
+    require_exact_heading_order(quick, compact_headings, "quick PRD schema")
     design = read(ROOT / "docs" / "superpowers" / "specs" / "2026-08-14-atu-workflow-risk-adaptive-fast-path-design.md")
-    require_ordered_tokens(design, compact_headings, "design compact schema")
+    require_exact_heading_order(design, compact_headings, "design compact schema")
+
+    fixture_path = ROOT / "tests" / "fixtures" / "personal-report-video-actions-compact.md"
+    require(fixture_path.is_file(), "missing matched compact artifact fixture")
+    fixture = read(fixture_path)
+    require_exact_heading_order(fixture, compact_headings, "matched compact artifact schema")
+    require(word_count(fixture) <= 575, "matched compact artifact output budget exceeded")
+    require(len(re.findall(r"^- \[[ x]\] AC-Q\d{2}:", fixture, re.MULTILINE)) in range(1, 6), "matched compact artifact AC count invalid")
+    require(len(re.findall(r"^- \[[ x]\] T-Q01:", fixture, re.MULTILINE)) == 1, "matched compact artifact task count invalid")
 
     ai_main = read(ROOT / "skills" / "atu-ai" / "SKILL.md")
     ai_quick = read(ROOT / "skills" / "atu-ai" / "references" / "quick-execution.md")

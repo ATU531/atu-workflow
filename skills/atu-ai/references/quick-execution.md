@@ -27,7 +27,7 @@ If required content is missing, multiple active tasks exist, or a strict trigger
 1. Read the compact spec, effective `AGENTS.md`, repository status and relevant diff, target code, callers, configuration, and nearby tests.
 2. Record the pre-existing staged, unstaged, and untracked boundary without resetting, cleaning, stashing, overwriting, or absorbing it.
 3. Confirm the change is one bounded behavior in one repository and a localized module or bounded vertical slice; its decisions are closed; existing auth, data, API, event, deployment, and external contracts remain stable; and focused verification is feasible.
-4. Escalate on any new or changed authentication, authorization, privacy, payment, audit policy, schema, migration, backfill, retention or data-lifecycle rule, destructive operation, production configuration, deployment topology, external provider, callback, queue, public API, compatibility contract, cross-repository boundary, broad shared state, or independent task.
+4. Escalate on any new or changed authentication, authorization, privacy, payment, audit policy, schema, migration, backfill, retention or data-lifecycle rule, destructive operation, production configuration, deployment topology, external provider, callback, queue, public API, compatibility contract, cross-repository boundary, broad shared state, or independent task, or when verification cannot remain bounded and explicit.
 5. Announce the task, expected files, reused contracts, focused checks, and compact eligibility evidence. Do not mark work started while only reading.
 
 When the first test or implementation edit begins, set the compact file to `IN_PROGRESS`. Do not create `PLAN.md`, `LESSONS.md`, numbered feature files, or a separate `verification.md`.
