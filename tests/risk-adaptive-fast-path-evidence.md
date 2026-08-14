@@ -498,7 +498,7 @@ Independent task `/root/green_prd_output_budget` then generated a complete setti
 | 4. Hidden strict trigger yields `ESCALATED` without discarded edits | ambiguity/escalation scenarios 2 and 3 | PASS |
 | 5. Strict safety, identity, review, QA, recovery, and evidence gates remain | unchanged `spec-contract.md` and N1-N8; strict invariant validator; strict behavior agents | PASS |
 | 6. Compact instruction/output/transition/artifact budgets | performance table above | PARTIAL — deterministic instruction/artifact/transition/context proxies PASS; aggregate prompt/output, tool calls, and wall time MANUAL REQUIRED |
-| 7. Source Skills and installed plugin pass validators | fresh command output and installed-cache hash audit recorded at final verification | PENDING until final verification |
+| 7. Source Skills and installed plugin pass validators | all validators passed; installed version `0.1.0+codex.20260814043107`; 8/8 key source/cache SHA-256 hashes matched | PASS |
 | 8. Fresh task invokes real `$atu-prd` then `$atu-ai` | current task cannot hot reload the installed plugin | MANUAL REQUIRED — open a new Codex task |
 
 ## Independent review remediation
@@ -543,3 +543,16 @@ BLOCKED: Does not enter Q1-Q4, specifically no Q2; reports blocker plus required
 ESCALATED: Does not enter Q1-Q4; routes to standard $atu-prd.
 DONE, checked: Does not enter Q1-Q4; remains closed and is never implicitly reopened.
 ```
+
+## Final review and installation audit
+
+The original independent reviewer re-reviewed the complete committed range through `a831359` after both remediation rounds. Final result: `PASS — no remaining actionable findings`.
+
+Installed plugin:
+
+```text
+atu-workflow@personal  installed, enabled  0.1.0+codex.20260814043107
+Installed plugin root: C:\Users\17321\.codex\plugins\cache\personal\atu-workflow\0.1.0+codex.20260814043107
+```
+
+SHA-256 comparison matched all 8 key files between `C:\Users\17321\plugins\atu-workflow` and that installed cache: manifest; both main Skills; both quick references; both standard workflow references; and the unchanged PRD strict specification contract. The final verification command repeats this comparison and fails on any mismatch.

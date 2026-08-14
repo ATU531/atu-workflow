@@ -298,15 +298,15 @@ Partial result: instruction words, observed artifact words, transitions, tasks, 
 
 Document automatic routing, compact eligibility, strict triggers, compact file location, copyable `$atu-prd` then `$atu-ai <quick-file>` usage, escalation, and the fact that users may force strict but cannot force compact past a strict trigger.
 
-- [ ] **Step 4: Run the complete verification suite fresh**
+- [x] **Step 4: Run the complete verification suite fresh**
 
 Run all validators from Task 4, `git diff --check`, exact link/placeholder scans, `codex plugin list`, and a source-versus-installed-cache hash comparison for changed plugin files.
 
-- [ ] **Step 5: Audit every design acceptance criterion**
+- [x] **Step 5: Audit every design acceptance criterion**
 
 Map each criterion in `docs/superpowers/specs/2026-08-14-atu-workflow-risk-adaptive-fast-path-design.md` to current files, behavior evidence, validator output, and installed-plugin state. Continue implementation if any evidence is missing or indirect.
 
-- [ ] **Step 6: Commit final documentation and evidence**
+- [x] **Step 6: Commit final documentation and evidence**
 
 ```powershell
 git add README.md tests docs\superpowers\plans\2026-08-14-atu-workflow-risk-adaptive-fast-path.md
