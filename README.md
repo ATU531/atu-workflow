@@ -4,11 +4,12 @@ ATU Workflow 是个人 Codex 插件，用于把项目初始化、PRD 拆解和�
 
 ## 入口
 
-Codex 通过 Skill 名称调用插件能力，三个主入口是：
+Codex 通过 Skill 名称调用插件能力，四个主入口是：
 
 - `$atu-init`：从仓库证据识别项目根与获准写入范围，增量创建或更新 `AGENTS.md` 等开发约定。只检查凭证文件是否存在，不读取 `.env`、密钥或证书内容；不凭空编造命令；默认不新建 Claude 兼容文件。
 - `$atu-prd`：先按仓库证据自动选择快速或严格模式，不修改业务代码。边界清晰、复用稳定契约的小改动生成一个 `specs/quick/*.md`；高风险、含未决问题、多任务或范围不确定的需求仍生成 `PLAN.md`、`LESSONS.md` 和编号功能规格。
 - `$atu-ai`：识别规格类型后只加载对应执行流程。快速规格按 Q1 至 Q4 完成边界确认、测试驱动实现、一次合并验证和收尾；标准规格继续使用原 N1 至 N8、双重哈希、独立评审、QA 和恢复机制。
+- `$atu-quick`：仅在显式调用时启用，在同一次调用中生成或恢复一个 forced quick 规格并直接执行 Q1 至 Q4。权限、支付、迁移、公共 API 等类别不会自动升级，但缺少真实决定、必需证据或外部操作授权时仍会如实阻塞。
 
 调用示例：
 
@@ -16,6 +17,7 @@ Codex 通过 Skill 名称调用插件能力，三个主入口是：
 $atu-init D:\Workspace\psy_mini_program
 $atu-prd D:\Workspace\psy_mini_program\docs\C端心理测评小程序PRD.md
 $atu-ai D:\Workspace\psy_mini_program
+$atu-quick D:\Workspace\example "修改支付回调并补齐迁移"
 ```
 
 ## 风险自适应快速路径
@@ -36,13 +38,21 @@ $atu-ai D:\Workspace\example\specs\quick\20260814-small-change.md
 
 快速规格只有一个文件、一个 `T-Q01` 和至多 `AC-Q05`，状态为 `READY / IN_PROGRESS / DONE / BLOCKED / ESCALATED`。它同时保存实现后的命令结果和验收矩阵，不额外创建 `verification.md`。若规划或实现时发现严格触发条件，保留现有文件和用户改动，标记 `ESCALATED`，再由 `$atu-prd` 按标准流程提升；不会重置或静默吸收未验证工作。
 
+## 强制快速入口
+
+自动快速路径仍由 `$atu-prd/$atu-ai` 按风险证据分类；显式 `$atu-quick` 则代表用户主动选择 forced quick，不会因认证/授权、支付、迁移/回填、公共 API/兼容性、外部服务、生产配置、跨模块或跨仓库等类别自动进入标准流程。
+
+`$atu-quick` 使用一个 `specs/quick/*.md`、一个 `T-Q01`、至多五个 `AC-Q*` 和 `READY / IN_PROGRESS / DONE / BLOCKED` 四种状态，不自动产生 `ESCALATED`。自然语言需求会先写入简短规格并在同一调用继续 Q1-Q4；已有 forced 文件可用 `$atu-quick <路径>` 恢复。真正缺少决定、必需环境/证据或操作授权时保持 `BLOCKED`，不会编造结论，也不会自行转成标准模式。
+
+入口选择本身只授权工作流，不等于授权提交、推送、发布、部署、真实支付、生产迁移、删除数据或外部写入；这些动作必须在请求或项目规则中明确写出动作和目标。
+
 无论哪种模式，测试、安全边界、真实浏览器/设备或外部环境证据都不能省略；不可用的必要证据必须记录为 `NOT RUN` 或 `MANUAL REQUIRED`。完成工作也不会自动授权提交、推送、部署或生产变更。
 
 Claude 原斜杠入口无法原样注册为 Codex 入口：Codex 插件发现的是 `SKILL.md` 中以连字符命名的 Skill，并使用 `$atu-init` 这类名称调用；两者属于不同的命令注册模型。
 
 ## 支持 Skill
 
-三个主入口可按任务需要使用八个专业支持 Skill：
+四个主入口可按任务需要使用八个专业支持 Skill：
 
 - `atu-android-engineer`：Android、WebView 与 kiosk 实现和验证。
 - `atu-backend-engineer`：后端 API、鉴权、业务逻辑、队列与集成。
@@ -78,8 +88,11 @@ atu-workflow/
 │  ├─ atu-init/
 │  ├─ atu-prd/
 │  ├─ atu-ai/
+│  ├─ atu-quick/
 │  └─ 八个专业支持 Skill
-└─ tests/validate_workflow.py
+└─ tests/
+   ├─ validate_workflow.py
+   └─ validate_forced_quick.py
 ```
 
 ## 验证
@@ -89,6 +102,7 @@ atu-workflow/
 ```powershell
 python C:\Users\17321\plugins\atu-workflow\tests\validate_workflow.py
 python C:\Users\17321\plugins\atu-workflow\tests\validate_risk_adaptive.py --scope all
+python C:\Users\17321\plugins\atu-workflow\tests\validate_forced_quick.py --scope all
 
 Get-ChildItem C:\Users\17321\plugins\atu-workflow\skills -Directory |
   ForEach-Object {
@@ -98,4 +112,4 @@ Get-ChildItem C:\Users\17321\plugins\atu-workflow\skills -Directory |
 python C:\Users\17321\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py C:\Users\17321\plugins\atu-workflow
 ```
 
-前两条分别检查基础结构约定与快速/严格路由、资源链接、安全不变量和词数预算；随后逐一校验 Skill 元数据与结构，最后校验插件清单及整体目录。
+前三条分别检查基础结构、自动快速/严格路由和显式 forced quick 合同；随后逐一校验 Skill 元数据与结构，最后校验插件清单及整体目录。

@@ -19,7 +19,8 @@
     "defaultPrompt": [
       "Initialize this repository with $atu-init.",
       "Turn the PRD into specs with $atu-prd.",
-      "Execute the next spec task with $atu-ai."
+      "Execute the next spec task with $atu-ai.",
+      "Force this coherent change through $atu-quick."
     ],
     "brandColor": "#6BC4B8"
   }

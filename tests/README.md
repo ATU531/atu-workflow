@@ -6,6 +6,8 @@
 
 风险自适应路径的 RED/GREEN 场景、原始提示、关键输出和指标：[risk-adaptive-fast-path-evidence.md](./risk-adaptive-fast-path-evidence.md)
 
+显式强制快速入口的五组 RED/GREEN 原始决策和指标：[forced-quick-evidence.md](./forced-quick-evidence.md)
+
 ## 方法
 
 使用独立只读代理进行 RED/GREEN 压力复测；未实际写入 fixture。
@@ -30,6 +32,13 @@
 - 默认独立上下文：标准执行最多三个（规格评审、质量评审、QA），快速执行为零；若需要这些门禁则提升到标准模式。
 - 快速路径硬上限：一个规格文件、一个任务、最多五个验收项、四个执行阶段；初始快速规格不超过约 575 个英文词或 800 个 CJK 字符。
 
+## 2026-08-14 显式 forced quick 复测
+
+- 五个 RED 控制覆盖授权、支付、迁移/回填、公共 API 和缺少生产决定/授权；现有自动入口均保持标准路由。
+- 五个 GREEN 样本均选择 `forced-quick`，高风险类别只记录不升级；缺少真实决定或操作授权时在 Q1 `BLOCKED`。
+- `$atu-quick` 必载说明为 1,060 词，其中主 Skill 170 词、workflow reference 890 词，低于 1,100 词上限。
+- 新入口只有一个 forced 文件、一个任务、最多五个验收项和一次 Q3 合并验证，不创建默认独立评审、QA 或双哈希上下文。
+
 ## 验证命令
 
 在 PowerShell 中执行：
@@ -37,9 +46,10 @@
 ```powershell
 python C:\Users\17321\plugins\atu-workflow\tests\validate_workflow.py
 python C:\Users\17321\plugins\atu-workflow\tests\validate_risk_adaptive.py --scope all
+python C:\Users\17321\plugins\atu-workflow\tests\validate_forced_quick.py --scope all
 ```
 
-预期：基础结构和风险自适应合同均通过，无错误。
+预期：基础结构、风险自适应和显式 forced quick 合同均通过，无错误。
 
 ```powershell
 Get-ChildItem C:\Users\17321\plugins\atu-workflow\skills -Directory | ForEach-Object {
