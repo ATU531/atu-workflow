@@ -31,6 +31,7 @@ NODES = {
         start=1,
     )
 }
+AI_REFERENCES = NODES | {"quick-execution.md", "standard-workflow.md"}
 CHECKLISTS = {
     "android-checklist.md",
     "miniprogram-checklist.md",
@@ -55,7 +56,10 @@ for skill_name in MAIN_SKILLS | SUPPORT_SKILLS:
     require("[TODO:" not in text, f"{skill_name}: unresolved TODO placeholder")
 
 node_dir = ROOT / "skills" / "atu-ai" / "references"
-require(NODES <= {path.name for path in node_dir.glob("*.md")}, "missing atu-ai node")
+require(
+    AI_REFERENCES <= {path.name for path in node_dir.glob("*.md")},
+    "missing atu-ai workflow reference",
+)
 
 checklist_dir = ROOT / "skills" / "atu-code-reviewer" / "references"
 require(
