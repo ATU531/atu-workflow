@@ -128,3 +128,87 @@ Final result: `PASS — strict behavior must be preserved`
 ## RED conclusion
 
 The current workflow protects high-risk changes correctly but has no compact artifact or execution route. Its one-size-fits-all artifact and N1-N8 requirements are the direct cause of orchestration expansion for bounded stable-contract changes. GREEN must add a compact path without changing the security scenario's disposition.
+
+## GREEN-AI-01 — Stable protected API UI change
+
+Independent task: `/root/green_ai_ui`
+
+The agent received the same synthetic request as RED-AI-01 and the updated `$atu-ai` Skill.
+
+Observed behavior, verbatim excerpts:
+
+```text
+The request is compact-workflow eligible, assuming the authority file is an approved `specs/quick/YYYYMMDD-feature-name.md` with status `READY`.
+
+The absent `PLAN.md`, `LESSONS.md`, numbered requirements/design/tasks files, and separate `verification.md` are correct for compact mode and must not be created.
+
+It intentionally does not create separate specification-review, quality-review, or QA contexts; standard N4/N6 gates; a separate verification ledger; application/specification dual hashes; N7 or unrelated-feature scans.
+```
+
+Assertions:
+
+| Assertion | Result |
+| --- | --- |
+| Stable protected API consumption uses Q1-Q4 | PASS |
+| One compact artifact is accepted | PASS |
+| Test-first, lifecycle, browser, and cleanup checks remain required | PASS |
+| Contradictory repository evidence escalates to standard mode | PASS |
+
+Final result: `PASS — compact execution without removing relevant safeguards`
+
+## GREEN-AI-02 — Stable backend contract change
+
+Independent task: `/root/green_ai_backend`
+
+The agent received the same synthetic request as RED-AI-02 and the updated `$atu-ai` Skill.
+
+Observed behavior, verbatim excerpts:
+
+```text
+The correct path is the compact workflow, `Q1 → Q2 → Q3 → Q4`, not the standard `N1–N8` workflow.
+
+Only one authority/evidence file is required: `specs/quick/YYYYMMDD-feature-name.md`.
+
+No separate specification-review, quality-review, or QA contexts are required by default. Q3 intentionally combines them into one current-snapshot verification pass.
+```
+
+Assertions:
+
+| Assertion | Result |
+| --- | --- |
+| Stable backend behavior uses Q1-Q4 | PASS |
+| One compact artifact is accepted | PASS |
+| Existing contracts, domain boundary, and focused tests are protected | PASS |
+| Public or unsupported contract evidence escalates to standard mode | PASS |
+
+Final result: `PASS — bounded backend work remains compact`
+
+## GREEN-AI-03 — Authorization-sensitive download endpoint
+
+Independent task: `/root/green_ai_security`
+
+The agent received the same synthetic request as RED-AI-03 and the updated `$atu-ai` Skill.
+
+Observed behavior, verbatim excerpts:
+
+```text
+The request must use the standard ATU workflow. Compact mode is prohibited because the change introduces authorization, a public API/error contract, file security boundaries, audit behavior, and production configuration.
+
+“Quick task” or token-saving language cannot override those triggers.
+
+Three independent contexts are required or strongly preferred: specification reviewer, quality/security reviewer, and QA evaluator.
+```
+
+Assertions:
+
+| Assertion | Result |
+| --- | --- |
+| Caller pressure does not bypass strict security gates | PASS |
+| New authorization/file/config contracts remain strict | PASS |
+| N1-N8, dual identities, independent review, and QA remain available | PASS |
+
+Final result: `PASS — strict security behavior preserved`
+
+## GREEN AI conclusion
+
+The updated router reduces bounded stable-contract work to one artifact and four stages while keeping security-, contract-, data-, infrastructure-, and ambiguity-sensitive work on the unchanged standard path. The compact instruction load is 1,143 words (`SKILL.md` plus `quick-execution.md`), below the 1,600-word AI budget.
