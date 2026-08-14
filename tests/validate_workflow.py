@@ -1,0 +1,74 @@
+from pathlib import Path
+import re
+import sys
+
+
+ROOT = Path(__file__).resolve().parents[1]
+MAIN_SKILLS = {"atu-init", "atu-prd", "atu-ai"}
+SUPPORT_SKILLS = {
+    "atu-android-engineer",
+    "atu-backend-engineer",
+    "atu-code-reviewer",
+    "atu-database-engineer",
+    "atu-doc-syncer",
+    "atu-frontend-engineer",
+    "atu-miniprogram-engineer",
+    "atu-qa-engineer",
+}
+NODES = {
+    f"N{i}-{name}.md"
+    for i, name in enumerate(
+        [
+            "init",
+            "enter-feature",
+            "execute-task",
+            "review",
+            "mark-done",
+            "qa-eval",
+            "context",
+            "finish",
+        ],
+        start=1,
+    )
+}
+CHECKLISTS = {
+    "android-checklist.md",
+    "miniprogram-checklist.md",
+    "quality-checklist.md",
+    "security-checklist.md",
+}
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise AssertionError(message)
+
+
+skill_dirs = {path.name for path in (ROOT / "skills").iterdir() if path.is_dir()}
+require(MAIN_SKILLS | SUPPORT_SKILLS <= skill_dirs, "missing required skill directory")
+
+for skill_name in MAIN_SKILLS | SUPPORT_SKILLS:
+    text = (ROOT / "skills" / skill_name / "SKILL.md").read_text(encoding="utf-8")
+    require(text.startswith("---\n"), f"{skill_name}: missing YAML frontmatter")
+    require(f"name: {skill_name}" in text, f"{skill_name}: wrong frontmatter name")
+    require("description:" in text, f"{skill_name}: missing description")
+    require("[TODO:" not in text, f"{skill_name}: unresolved TODO placeholder")
+
+node_dir = ROOT / "skills" / "atu-ai" / "references"
+require(NODES <= {path.name for path in node_dir.glob("*.md")}, "missing atu-ai node")
+
+checklist_dir = ROOT / "skills" / "atu-code-reviewer" / "references"
+require(
+    CHECKLISTS <= {path.name for path in checklist_dir.glob("*.md")},
+    "missing review checklist",
+)
+
+all_text = "\n".join(path.read_text(encoding="utf-8") for path in ROOT.rglob("*.md"))
+for forbidden in (r"Agent\s*\(", r"Skill\s*\(", r"codex:codex-rescue"):
+    require(not re.search(forbidden, all_text), f"Claude-only call remains: {forbidden}")
+
+for main in MAIN_SKILLS:
+    require(f"${main}" in all_text, f"missing Codex invocation ${main}")
+
+print("atu-workflow contract ok")
+sys.exit(0)
