@@ -313,6 +313,6 @@ git add README.md tests docs\superpowers\plans\2026-08-14-atu-workflow-risk-adap
 git commit -m "docs: document adaptive atu workflow"
 ```
 
-- [ ] **Step 7: Verify final repository state**
+- [x] **Step 7: Verify final repository state**
 
 Require a clean Git worktree, no remotes, the expected commit sequence, all validators passing, and the new installed plugin version enabled. Report that a newly created Codex task is still the final real `$`-entry smoke boundary if the current task cannot reload the plugin.
