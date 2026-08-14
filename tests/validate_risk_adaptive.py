@@ -112,6 +112,8 @@ def validate_prd() -> None:
     require("existing authenticated" in main.lower(), "atu-prd router does not protect stable authenticated API consumption")
     require(word_count(main) + word_count(quick) <= 1400, "atu-prd compact instruction budget exceeded")
     require_local_links(main_path)
+    require_local_links(quick_path)
+    require_local_links(standard_path)
 
     ai_main = read(ROOT / "skills" / "atu-ai" / "SKILL.md")
     ai_quick = read(ROOT / "skills" / "atu-ai" / "references" / "quick-execution.md")

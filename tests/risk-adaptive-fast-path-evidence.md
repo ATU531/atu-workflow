@@ -320,3 +320,101 @@ Final result: `PASS — strict planning behavior must be preserved`
 ## RED PRD conclusion
 
 The standard contract produces safe plans but forces full artifact, versioning, graph, and traceability machinery onto bounded changes. GREEN must add a one-file compact generator for closed, stable-contract requests while retaining the existing specification contract unchanged for strict and uncertain requests.
+
+## GREEN-PRD-01 — Stable protected API UI change
+
+Independent task: `/root/green_prd_ui`
+
+The agent received the same bounded UI scenario as RED-PRD-01 and the updated `$atu-prd` Skill.
+
+Observed behavior, verbatim excerpts:
+
+```text
+Compact mode is the correct selection.
+
+Documents: 1 authority/evidence document
+Acceptance criteria: 4, contiguous `AC-Q01`–`AC-Q04`
+Top-level tasks: exactly 1, `T-Q01`
+Standard artifacts changed: none
+
+This is proportionate.
+```
+
+It produced a complete proposed `specs/quick/20260814-report-video-preview-download.md` covering stable authenticated clients/endpoints, non-autoplay behavior, server filename use, failure paths, late responses, object-URL cleanup, focused component/browser verification, and localized rollback.
+
+Assertions:
+
+| Assertion | Result |
+| --- | --- |
+| Bounded stable-contract request emits one compact file | PASS |
+| Output has one task and no more than five outcomes | PASS |
+| No PLAN/LESSONS/numbered/ledger artifact is introduced | PASS |
+| Lifecycle, browser, error, and security invariants remain explicit | PASS |
+
+Final result: `PASS — one proportional artifact with complete bounded design`
+
+## GREEN-PRD-02 — Stable backend contract change
+
+Independent task: `/root/green_prd_backend`
+
+The agent received the same bounded backend scenario as RED-PRD-02 and the updated `$atu-prd` Skill.
+
+Observed behavior, verbatim excerpts:
+
+```text
+Compact mode is the correct and proportionate selection.
+
+Documents: exactly 1
+Acceptance criteria: 3 (`AC-Q01`–`AC-Q03`)
+Top-level tasks: exactly 1 (`T-Q01`)
+Open questions: 0
+
+No `PLAN.md`, `LESSONS.md`, feature directory, `requirements.md`, `design.md`, `tasks.md`, or `verification.md` changes.
+```
+
+It produced a complete proposed `specs/quick/20260814-helper-derived-response-field.md` preserving authentication, ownership, routes, persistence, errors, existing response members, and the helper/service/repository boundary with focused unit/API verification.
+
+Assertions:
+
+| Assertion | Result |
+| --- | --- |
+| Bounded stable-contract request emits one compact file | PASS |
+| Output has exactly one task | PASS |
+| Existing compatibility, auth, architecture, and tests remain protected | PASS |
+| Newly discovered strict boundaries trigger escalation | PASS |
+
+Final result: `PASS — generic backend work is compact without video-specific logic`
+
+## GREEN-PRD-03 — Authorization-sensitive download endpoint
+
+Independent task: `/root/green_prd_security`
+
+The agent received the same security-sensitive scenario as RED-PRD-03 and the updated `$atu-prd` Skill.
+
+Observed behavior, verbatim excerpts:
+
+```text
+Planning mode: standard
+Current status: `⏸ BLOCKED`
+Final result: `DONE_WITH_CONCERNS`
+
+Compact mode is prohibited because the request changes authorization and ownership rules, audit policy, a public API/error contract, and production configuration.
+
+There must be no `$atu-ai` command now, because the specification is not implementation-ready.
+```
+
+It retained the blocked new-feature artifact rules, zero active tasks, `OQ-001` through `OQ-004`, the unchanged full contract, and no handoff to implementation.
+
+Assertions:
+
+| Assertion | Result |
+| --- | --- |
+| Caller pressure does not bypass strict routing | PASS |
+| Unresolved material decisions block design/tasks | PASS |
+| Existing standard artifact, task-limit, traceability, and handoff rules remain | PASS |
+
+Final result: `PASS — strict planning and blocking gates preserved`
+
+## GREEN PRD conclusion
+
+The updated router makes compact planning generic rather than media-specific: both a Vue lifecycle change and a Flask response change produce one file, one task, and at most five outcomes, while the security-sensitive endpoint remains standard and blocked. `$atu-prd` compact instructions are 1,134 words; the combined compact `$atu-prd` + `$atu-ai` instruction load is 2,277 words, below the 3,000-word budget.
