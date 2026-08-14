@@ -4,7 +4,7 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MAIN_SKILLS = {"atu-init", "atu-prd", "atu-ai"}
+MAIN_SKILLS = {"atu-init", "atu-prd", "atu-ai", "atu-quick"}
 SUPPORT_SKILLS = {
     "atu-android-engineer",
     "atu-backend-engineer",
@@ -33,6 +33,7 @@ NODES = {
 }
 AI_REFERENCES = NODES | {"quick-execution.md", "standard-workflow.md"}
 PRD_REFERENCES = {"quick-spec-contract.md", "spec-contract.md", "standard-workflow.md"}
+QUICK_REFERENCES = {"forced-quick-workflow.md"}
 CHECKLISTS = {
     "android-checklist.md",
     "miniprogram-checklist.md",
@@ -66,6 +67,12 @@ prd_reference_dir = ROOT / "skills" / "atu-prd" / "references"
 require(
     PRD_REFERENCES <= {path.name for path in prd_reference_dir.glob("*.md")},
     "missing atu-prd workflow reference",
+)
+
+quick_reference_dir = ROOT / "skills" / "atu-quick" / "references"
+require(
+    QUICK_REFERENCES <= {path.name for path in quick_reference_dir.glob("*.md")},
+    "missing atu-quick workflow reference",
 )
 
 checklist_dir = ROOT / "skills" / "atu-code-reviewer" / "references"
