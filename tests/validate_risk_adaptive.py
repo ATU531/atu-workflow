@@ -108,6 +108,7 @@ def validate_prd() -> None:
     require("AC-Q01" in quick and "AC-Q05" in quick, "quick PRD acceptance limit is not explicit")
     require("exactly one" in quick.lower() and "T-Q01" in quick, "quick PRD does not enforce one task")
     require("do not create" in quick.lower() and "PLAN.md" in quick, "quick PRD does not prohibit standard artifacts")
+    require("575" in quick and "800 CJK" in quick, "quick PRD output budget is not explicit")
     require("uncertain" in main.lower(), "atu-prd router lacks strict-on-uncertainty rule")
     require("existing authenticated" in main.lower(), "atu-prd router does not protect stable authenticated API consumption")
     require(word_count(main) + word_count(quick) <= 1400, "atu-prd compact instruction budget exceeded")

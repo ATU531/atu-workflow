@@ -90,6 +90,8 @@ Create between one and five atomic criteria, using the contiguous IDs `AC-Q01` t
 
 The bounded design must be concrete enough to prevent architectural guessing. Record reused boundaries, data flow, unhappy paths, authorization and privacy invariants, compatibility, lifecycle or concurrency cleanup, verification strategy, and rollback only where relevant. Do not add speculative abstractions or boilerplate sections with invented content.
 
+Keep the initial `READY` specification at or below 575 whitespace-separated English words or about 800 CJK characters. Prefer short evidence-backed bullets. If the material contract cannot fit without hiding decisions, risks, or verification boundaries, use standard mode instead of compressing away required detail.
+
 ## Questions, promotion, and review
 
 If a material question remains, do not publish a `READY` compact file. Route to standard mode so its blocking-question gate and dependency analysis can preserve the uncertainty.
