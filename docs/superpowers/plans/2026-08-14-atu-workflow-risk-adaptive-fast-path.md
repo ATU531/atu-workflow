@@ -284,15 +284,15 @@ Repeat the cachebuster/install/list verification. Confirm the installed version 
 - Consumes: installed compact generator/executor and all design acceptance criteria.
 - Produces: user-facing workflow documentation, final RED/GREEN evidence, and requirement-by-requirement audit.
 
-- [ ] **Step 1: Run end-to-end compact handoff evaluations**
+- [x] **Step 1: Run end-to-end compact handoff evaluations**
 
 Use a synthetic/read-only copy of the personal-report play/download request plus generic CRUD, report-layout, backend, schema-migration, payment, and ambiguity scenarios. Do not modify `D:\Workspace\x_insight_projcet`.
 
-- [ ] **Step 2: Measure performance proxies**
+- [x] **Step 2: Measure performance proxies**
 
 Record mandatory loaded-document words, prompt/output words, tool calls, independent contexts, transitions, and artifacts for matched RED/GREEN cases. Require compact instructions at most 3,000 words, prompt/output at most 35% baseline, at most four transitions, one task, one artifact, and no default independent review/QA context.
 
-- [ ] **Step 3: Update operator documentation**
+- [x] **Step 3: Update operator documentation**
 
 Document automatic routing, compact eligibility, strict triggers, compact file location, copyable `$atu-prd` then `$atu-ai <quick-file>` usage, escalation, and the fact that users may force strict but cannot force compact past a strict trigger.
 

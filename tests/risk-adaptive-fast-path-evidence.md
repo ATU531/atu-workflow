@@ -417,4 +417,74 @@ Final result: `PASS — strict planning and blocking gates preserved`
 
 ## GREEN PRD conclusion
 
-The updated router makes compact planning generic rather than media-specific: both a Vue lifecycle change and a Flask response change produce one file, one task, and at most five outcomes, while the security-sensitive endpoint remains standard and blocked. `$atu-prd` compact instructions are 1,134 words; the combined compact `$atu-prd` + `$atu-ai` instruction load is 2,277 words, below the 3,000-word budget.
+The updated router makes compact planning generic rather than media-specific: both a Vue lifecycle change and a Flask response change produce one file, one task, and at most five outcomes, while the security-sensitive endpoint remains standard and blocked. `$atu-prd` compact instructions are 1,177 words; the combined compact `$atu-prd` + `$atu-ai` instruction load is 2,320 words, below the 3,000-word budget.
+
+## Cross-domain end-to-end regressions
+
+Three independent read-only evaluations selected one mode at each router and loaded only that mode's references.
+
+### Compact generality
+
+Independent task: `/root/e2e_compact_generality`
+
+| Scenario | PRD result | AI result | Preserved verification |
+| --- | --- | --- | --- |
+| Existing React table reset-filter action | 1 file, 1 task, 3 AC | Q1-Q4, 0 default independent contexts | component behavior and request regressions |
+| Existing report label mapping and local spacing | 1 file, 1 task, 3 AC | Q1-Q4, 0 default independent contexts | unit/snapshot plus required real render comparison |
+| Existing Mini Program form validation message | 1 file, 1 task, 2 AC | Q1-Q4, 0 default independent contexts | validation/request regressions plus truthful DevTools/device boundary |
+
+All three remained compact because they were localized, decision-closed, contract-stable, reversible, and independently verifiable as one coherent task. The agent confirmed that shared-state/API, public report-contract, authentication/privacy, or independently deliverable work would escalate. This demonstrates that routing depends on topology and risk rather than video vocabulary.
+
+### Strict regressions
+
+Independent task: `/root/e2e_strict_regressions`
+
+| Scenario | Strict triggers | Result |
+| --- | --- | --- |
+| Nullable column, migration/backfill, unique constraint, rollback | schema, migration, backfill, possible destructive data | Standard PRD and N1-N8 with migration/database evidence |
+| Payment callback, signatures, idempotency, refunds/entitlements, secrets | payment, external callback, production configuration | Standard PRD and N1-N8 with security, provider, and state-machine evidence |
+| Public webhook payload and retry/dead-letter contract | public compatibility, external service, queue | Standard PRD and N1-N8 with consumer, broker, retry, and rollback evidence |
+
+The caller labeled every scenario a quick task. None could bypass strict routing. Missing decisions block only affected specifications; missing databases, provider sandboxes, brokers, consumers, secrets, or production authorization remain `NOT RUN`, `MANUAL REQUIRED`, or `BLOCKED`, never fabricated PASS evidence.
+
+### Ambiguity and escalation
+
+Independent task: `/root/e2e_ambiguity_escalation`
+
+| Scenario | Transition | Preserved state and next route |
+| --- | --- | --- |
+| Ambiguous account deletion with retention/legal-hold/external-delete questions | PRD standard → `⏸ BLOCKED`, `DONE_WITH_CONCERNS` | no implementation-ready design/tasks or `$atu-ai` handoff; obtain product/legal/data decisions |
+| Q1 disproves stable endpoint and finds public cross-repository change | compact `READY → ESCALATED` | no implementation edit; preserve dirty state; route to standard PRD/change mode |
+| Q2 discovers required schema migration after a failing test and small edit | `READY → IN_PROGRESS → ESCALATED` | preserve test/edit and unrelated work; leave `T-Q01` unchecked; claim no verified behavior; promote through standard PRD |
+
+These results distinguish unresolved decisions (`BLOCKED`) from newly discovered strict scope (`ESCALATED`) and confirm that neither path discards or silently absorbs edits.
+
+## Performance proxies
+
+Exact model tokens and workflow wall time are unavailable inside a Skill source test, so the approved proxy set uses loaded-document words, bounded artifact output, transitions, tasks, acceptance criteria, hashes, and independent contexts.
+
+| Proxy | Standard baseline | Compact result/limit | Ratio or result |
+| --- | ---: | ---: | ---: |
+| Mandatory `$atu-prd` + `$atu-ai` instruction words | 12,853 | 2,320 | 18.1% — PASS ≤35% |
+| Matched personal-report feature/ledger output words | 1,877 | initial quick spec ≤575 English words | ≤30.6% — PASS ≤35% |
+| Specification/execution artifacts | 5 standard spec files plus ledger | 1 compact authority/evidence file | 16.7% |
+| Active tasks in matched fixture | 7 | 1 | 14.3% |
+| Acceptance IDs in matched fixture | 13 | 4 in evaluated compact result; maximum 5 | 30.8%; maximum 38.5% |
+| Execution transitions | N1-N8 | Q1-Q4 | 4-stage hard limit — PASS |
+| Default independent review/QA contexts | 3 | 0 | eliminated; strict escalation if needed |
+| Preinitialized `spec_contract` fields in matched fixture | 7 | 0 | eliminated from compact mode |
+
+The compact output comparison is conservative: the 1,877-word baseline excludes shared `PLAN.md` and `LESSONS.md`, while the compact cap includes requirements, design, task, and handoff content. Matched prompts are the same classification requests; exact aggregate prompt/output tokens and real orchestration wall time remain a fresh-task measurement boundary. The structural proxies predict a material reduction without skipping tests or external/manual evidence.
+
+## Design acceptance audit
+
+| Criterion | Current evidence | Result |
+| --- | --- | --- |
+| 1. Low-risk scenarios produce one file/task, ≤5 AC, Q1-Q4 | GREEN PRD/AI UI and backend; cross-domain React/report/Mini Program evaluations | PASS |
+| 2. Compact preserves dirty work, test-first, regressions, truthful boundaries, release authority | `quick-execution.md`; GREEN AI outputs; validator tokens | PASS |
+| 3. Strict triggers override small/compact language | security, schema, payment, webhook/queue evaluations | PASS |
+| 4. Hidden strict trigger yields `ESCALATED` without discarded edits | ambiguity/escalation scenarios 2 and 3 | PASS |
+| 5. Strict safety, identity, review, QA, recovery, and evidence gates remain | unchanged `spec-contract.md` and N1-N8; strict invariant validator; strict behavior agents | PASS |
+| 6. Compact instruction/output/transition/artifact budgets | performance table above | PASS for deterministic proxies; wall time MANUAL REQUIRED |
+| 7. Source Skills and installed plugin pass validators | fresh command output and installed-cache hash audit recorded at final verification | PENDING until final verification |
+| 8. Fresh task invokes real `$atu-prd` then `$atu-ai` | current task cannot hot reload the installed plugin | MANUAL REQUIRED — open a new Codex task |

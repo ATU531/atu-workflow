@@ -3,7 +3,7 @@
 ## Status
 
 - Date: 2026-08-14
-- State: approved in conversation; awaiting written-spec review before implementation planning
+- State: implemented and locally verified; fresh-task `$` entry smoke remains an explicit manual boundary
 - Plugin source: `C:\Users\17321\plugins\atu-workflow`
 - Scope: `$atu-prd` and `$atu-ai` orchestration only
 
