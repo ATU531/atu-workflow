@@ -32,6 +32,7 @@ NODES = {
     )
 }
 AI_REFERENCES = NODES | {"quick-execution.md", "standard-workflow.md"}
+PRD_REFERENCES = {"quick-spec-contract.md", "spec-contract.md", "standard-workflow.md"}
 CHECKLISTS = {
     "android-checklist.md",
     "miniprogram-checklist.md",
@@ -59,6 +60,12 @@ node_dir = ROOT / "skills" / "atu-ai" / "references"
 require(
     AI_REFERENCES <= {path.name for path in node_dir.glob("*.md")},
     "missing atu-ai workflow reference",
+)
+
+prd_reference_dir = ROOT / "skills" / "atu-prd" / "references"
+require(
+    PRD_REFERENCES <= {path.name for path in prd_reference_dir.glob("*.md")},
+    "missing atu-prd workflow reference",
 )
 
 checklist_dir = ROOT / "skills" / "atu-code-reviewer" / "references"

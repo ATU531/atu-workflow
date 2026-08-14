@@ -212,3 +212,111 @@ Final result: `PASS — strict security behavior preserved`
 ## GREEN AI conclusion
 
 The updated router reduces bounded stable-contract work to one artifact and four stages while keeping security-, contract-, data-, infrastructure-, and ambiguity-sensitive work on the unchanged standard path. The compact instruction load is 1,143 words (`SKILL.md` plus `quick-execution.md`), below the 1,600-word AI budget.
+
+## RED PRD method
+
+Three new independent read-only agents received the current pre-change `$atu-prd` Skill and its full specification contract. They analyzed a bounded UI change, a bounded backend change, and an authorization-sensitive endpoint. No fixture or project file was written and no external system was called.
+
+Deterministic RED command:
+
+```powershell
+python tests\validate_risk_adaptive.py --scope prd
+python tests\validate_workflow.py
+```
+
+Observed failures:
+
+```text
+AssertionError: missing quick spec contract
+AssertionError: missing atu-prd workflow reference
+```
+
+These are the expected RED failures before modifying `$atu-prd`.
+
+## RED-PRD-01 — Stable protected API UI change
+
+Independent task: `/root/red_prd_ui`
+
+Synthetic request: specify two buttons on one existing Vue report page using already verified authenticated Blob play/download endpoints, including non-autoplay playback, original filename download, and object-URL cleanup. No API, auth, schema, public contract, dependency, deployment, or external-service change is allowed.
+
+Observed behavior, verbatim excerpts:
+
+```text
+5 specification artifacts present.
+
+The skill itself imposes seven PRD-authoring stages.
+
+The packaging is not: five Markdown artifacts, mandatory full requirements/design sections, a PLAN ledger/graph, and an empty or unchanged LESSONS ledger are excessive for two frontend actions with stable existing infrastructure.
+```
+
+It generated `PLAN.md`, `LESSONS.md`, `requirements.md`, `design.md`, and `tasks.md`; four tasks; three dependency stages; and a 90-minute estimate.
+
+Assertions:
+
+| Assertion | Result |
+| --- | --- |
+| Bounded stable-contract request can emit one compact file | FAIL |
+| Compact output has exactly one task and at most five outcomes | FAIL |
+| Lifecycle and browser evidence remain specified | PASS |
+
+Final result: `FAIL — safe content wrapped in disproportionate process`
+
+## RED-PRD-02 — Stable backend contract change
+
+Independent task: `/root/red_prd_backend`
+
+Synthetic request: specify one optional response field on an existing authenticated Flask endpoint, computed by an existing helper through existing service/repository boundaries. No route, auth, schema, public compatibility, dependency, configuration, external-service, or deployment change is allowed.
+
+Observed behavior, verbatim excerpts:
+
+```text
+Required standard pack: 5 documents (`PLAN`, `LESSONS`, plus 3 feature authority documents).
+
+The pre-change skill requires all seven PRD stages.
+
+A compact one-file, one-task specification would be proportionate; the current skill has no such route.
+```
+
+It required normal change-mode versioning for three authority documents, PLAN ledger/index/graph bookkeeping, two tasks, and about 30 minutes for the smallest implementation.
+
+Assertions:
+
+| Assertion | Result |
+| --- | --- |
+| Bounded stable-contract request can emit one compact file | FAIL |
+| Compact output has exactly one task | FAIL |
+| Existing compatibility and test boundaries remain specified | PASS |
+
+Final result: `FAIL — smallest code change still expands into the full standard pack`
+
+## RED-PRD-03 — Authorization-sensitive download endpoint
+
+Independent task: `/root/red_prd_security`
+
+Synthetic request: specify a new download endpoint introducing ownership authorization, canonical path containment, public error codes, audit logging, and production storage configuration while ownership exceptions, symlink policy, audit-failure semantics, and existence-disclosure behavior remain undecided.
+
+Observed behavior, verbatim excerpts:
+
+```text
+The request is a new, single cohesive feature, but it is blocked by four material security/behavior decisions.
+
+No option may be silently selected.
+
+A compact single-file generated specification is not acceptable.
+```
+
+It correctly created no final design or task list, identified `OQ-001` through `OQ-004`, kept zero active tasks, and required `DONE_WITH_CONCERNS` until the security decisions are confirmed.
+
+Assertions:
+
+| Assertion | Result |
+| --- | --- |
+| Caller pressure does not bypass the blocking-question gate | PASS |
+| Authorization, file, audit, public error, and production config stay strict | PASS |
+| Unresolved decisions are not guessed | PASS |
+
+Final result: `PASS — strict planning behavior must be preserved`
+
+## RED PRD conclusion
+
+The standard contract produces safe plans but forces full artifact, versioning, graph, and traceability machinery onto bounded changes. GREEN must add a one-file compact generator for closed, stable-contract requests while retaining the existing specification contract unchanged for strict and uncertain requests.
