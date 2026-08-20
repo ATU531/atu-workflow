@@ -8,7 +8,7 @@ Codex 通过 Skill 名称调用插件能力，四个主入口是：
 
 - `$atu-init`：从仓库证据识别项目根与获准写入范围，增量创建或更新 `AGENTS.md` 等开发约定。只检查凭证文件是否存在，不读取 `.env`、密钥或证书内容；不凭空编造命令；默认不新建 Claude 兼容文件。
 - `$atu-prd`：先按仓库证据自动选择快速或严格模式，不修改业务代码。边界清晰、复用稳定契约的小改动生成一个 `specs/quick/*.md`；高风险、含未决问题、多任务或范围不确定的需求仍生成 `PLAN.md`、`LESSONS.md` 和编号功能规格。
-- `$atu-ai`：识别规格类型后只加载对应执行流程。快速规格按 Q1 至 Q4 完成边界确认、测试驱动实现、一次合并验证和收尾；标准规格继续使用原 N1 至 N8、双重哈希、独立评审、QA 和恢复机制。
+- `$atu-ai`：识别规格类型后只加载对应执行流程。快速规格按 Q1 至 Q4 执行；标准规格按 S1 至 S4 完成边界确认、逐任务测试驱动实现、一次功能级合并验证和收尾恢复。独立审查与 QA 只在关键风险或真实验收边界需要时启用。
 - `$atu-quick`：仅在显式调用时启用，在同一次调用中生成或恢复一个 forced quick 规格并直接执行 Q1 至 Q4。权限、支付、迁移、公共 API 等类别不会自动升级，但缺少真实决定、必需证据或外部操作授权时仍会如实阻塞。
 
 调用示例：
@@ -37,6 +37,8 @@ $atu-ai D:\Workspace\example\specs\quick\20260814-small-change.md
 ```
 
 快速规格只有一个文件、一个 `T-Q01` 和至多 `AC-Q05`，状态为 `READY / IN_PROGRESS / DONE / BLOCKED / ESCALATED`。它同时保存实现后的命令结果和验收矩阵，不额外创建 `verification.md`。若规划或实现时发现严格触发条件，保留现有文件和用户改动，标记 `ESCALATED`，再由 `$atu-prd` 按标准流程提升；不会重置或静默吸收未验证工作。
+
+标准执行流程为 `S1 边界确认 → S2 测试驱动实现 → S3 功能级合并验证 → S4 收尾与恢复`。普通标准任务不再默认进行每任务独立规格审查、独立质量审查和独立 QA；认证/授权、支付资金、破坏性迁移、公共兼容契约或生产变更才在功能级增加一次独立代码审查，真实浏览器、设备或外部服务验收按需要增加一次独立 QA。`verification.md` 仅用于跨会话、多任务交接或项目明确要求的持久证据。
 
 ## 强制快速入口
 
@@ -101,6 +103,7 @@ atu-workflow/
 
 ```powershell
 python C:\Users\17321\plugins\atu-workflow\tests\validate_workflow.py
+python C:\Users\17321\plugins\atu-workflow\tests\validate_simplified_standard.py
 python C:\Users\17321\plugins\atu-workflow\tests\validate_risk_adaptive.py --scope all
 python C:\Users\17321\plugins\atu-workflow\tests\validate_forced_quick.py --scope all
 
@@ -112,4 +115,4 @@ Get-ChildItem C:\Users\17321\plugins\atu-workflow\skills -Directory |
 python C:\Users\17321\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py C:\Users\17321\plugins\atu-workflow
 ```
 
-前三条分别检查基础结构、自动快速/严格路由和显式 forced quick 合同；随后逐一校验 Skill 元数据与结构，最后校验插件清单及整体目录。
+前四条分别检查基础结构、精简标准执行、自动快速/严格路由和显式 forced quick 合同；随后逐一校验 Skill 元数据与结构，最后校验插件清单及整体目录。

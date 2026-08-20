@@ -1,6 +1,5 @@
 from pathlib import Path
 import argparse
-import hashlib
 import re
 
 
@@ -79,51 +78,48 @@ def require_strict_triggers(path: Path) -> None:
     require("uncertain" in canonical or "uncertainty" in canonical, f"strict uncertainty trigger missing from {path}")
 
 
-STRICT_GOLDEN_SHA256 = {
-    "skills/atu-ai/references/standard-workflow.md": "7ef91aacecf88bef73763c75f5060fc6a71f66e196c6afbf96871cac61cf1490",
-    "skills/atu-ai/references/N1-init.md": "3001abf4ea020f3a6e17c43e0be60706b883649edd373ee8cc547b3b313fa8ea",
-    "skills/atu-ai/references/N2-enter-feature.md": "972b1a686650c8764ca4c0b5707627d10788341b31ca1eef0752acab65836ae8",
-    "skills/atu-ai/references/N3-execute-task.md": "eea42733e0c050f323ba8f21b0b1befb17441fd35a0ae21d3575f12772560715",
-    "skills/atu-ai/references/N4-review.md": "77c34ed9c11408f40a3a6078409bf4f2698e11845dad30cb4dd997d2ff89dade",
-    "skills/atu-ai/references/N5-mark-done.md": "66f5fee488afeeeaf8e165cfe09e7c9ed6e2eb0ccdc70857ac910e98e51dd935",
-    "skills/atu-ai/references/N6-qa-eval.md": "5edbe0364930c384553420f9563887c026d465b11b1d88e61a6b19fff7658983",
-    "skills/atu-ai/references/N7-context.md": "843c5bf46366c04c02b5753d7b346f1a3fa9076870b2417aa8c7fcbdde8f8361",
-    "skills/atu-ai/references/N8-finish.md": "5620665b3aa64860c185acac10b6ab174bb23aa02354fd75b8215c5f947009f2",
+PRD_GOLDEN_SHA256 = {
     "skills/atu-prd/references/spec-contract.md": "654a8c163b8964d987b66fcd7003c2ff35a408396c27060cd614fcf42a635c8c",
     "skills/atu-prd/references/standard-workflow.md": "8d9c43b74935e70894896fa8aba62bf4307ef498d9e5634f59408178205ede95",
 }
 
 
-def validate_strict_golden() -> None:
-    for relative, expected in STRICT_GOLDEN_SHA256.items():
+def validate_prd_golden() -> None:
+    import hashlib
+
+    for relative, expected in PRD_GOLDEN_SHA256.items():
         normalized = read(ROOT / relative).replace("\r\n", "\n")
         actual = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
-        require(actual == expected, f"strict workflow golden changed: {relative}")
+        require(actual == expected, f"PRD standard golden changed: {relative}")
 
 
 def validate_ai() -> None:
     ai = ROOT / "skills" / "atu-ai"
     main_path = ai / "SKILL.md"
     main = read(main_path)
-    node_text = "\n".join(
-        read(path) for path in sorted((ai / "references").glob("N*.md"))
-    )
+    stage_paths = sorted((ai / "references").glob("S*.md"))
+    stage_text = "\n".join(read(path) for path in stage_paths)
     standard_path = ai / "references" / "standard-workflow.md"
-    strict_text = (read(standard_path) if standard_path.is_file() else main) + node_text
+    standard = read(standard_path) if standard_path.is_file() else main
+    strict_text = standard + stage_text
 
     strict_invariants = {
-        "deterministic spec identity": "spec_contract",
-        "durable ledger": "verification.md",
-        "review gate": "N4",
-        "QA gate": "N6",
-        "context recovery": "N7",
-        "independent specification review": "independent specification review",
-        "independent quality review": "independent quality review",
-        "checked-task recovery": "reopen",
+        "boundary stage": "S1",
+        "implementation stage": "S2",
+        "combined verification stage": "S3",
+        "close and recovery stage": "S4",
+        "test-first implementation": "test-first",
+        "feature acceptance matrix": "feature acceptance matrix",
+        "conditional review": "once per feature",
+        "conditional QA": "independent QA only",
+        "optional durable evidence": "verification.md",
     }
     strict_lower = strict_text.lower()
     for label, token in strict_invariants.items():
         require(token.lower() in strict_lower, f"strict atu-ai invariant missing: {label}")
+    require(not list((ai / "references").glob("N*.md")), "legacy N1-N8 references remain")
+    require("spec_contract" not in strict_text, "obsolete specification hash remains")
+    require(word_count(main) + word_count(strict_text) <= 3000, "standard instruction budget exceeded")
 
     quick_path = ai / "references" / "quick-execution.md"
     require(quick_path.is_file(), "missing quick execution")
@@ -235,7 +231,7 @@ def main() -> None:
     parser.add_argument("--scope", choices=("ai", "prd", "all"), default="all")
     args = parser.parse_args()
 
-    validate_strict_golden()
+    validate_prd_golden()
     if args.scope in ("ai", "all"):
         validate_ai()
     if args.scope in ("prd", "all"):

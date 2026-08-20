@@ -1,6 +1,6 @@
 # ATU Workflow 验证说明
 
-最近更新：2026-08-14
+最近更新：2026-08-20
 
 可复现回放证据：[behavior-evidence.md](./behavior-evidence.md)
 
@@ -22,7 +22,7 @@
 
 - `init`：`DONE_WITH_CONCERNS`。明确 root/write scope；不读取 `.env`、密钥、证书等凭证文件内容，不编造命令，也不默认新建 Claude 文件。
 - `prd`：`DONE_WITH_CONCERNS`。相关 feature 标记为 `BLOCKED`；不发布下一版 design/tasks、不编码，并记录 OQ。
-- `ai`：`BLOCKED`。保护 dirty 工作区；外部测试记为 `NOT RUN`；task 保持 `[ ]`，PLAN 不标完成；verification ledger 同时记录双 hash 与 review/QA 证据。服务恢复后按 `N4 → N6 → N5` 执行。
+- `ai`：`BLOCKED`。保护 dirty 工作区；外部测试记为 `NOT RUN`；task 保持 `[ ]`，PLAN 不标完成。服务恢复后从受影响的 S2 或 S3 继续，不因缺少历史双哈希重走完整流程。
 
 ## 2026-08-14 风险自适应复测
 
@@ -39,17 +39,25 @@
 - `$atu-quick` 必载说明为 1,081 词，其中主 Skill 170 词、workflow reference 911 词，低于 1,100 词上限。
 - 新入口只有一个 forced 文件、一个任务、最多五个验收项和一次 Q3 合并验证，不创建默认独立评审、QA 或双哈希上下文。
 
+## 2026-08-20 标准审计精简
+
+- 标准执行从 N1–N8 合并为 S1–S4，移除 `spec_contract`、每节点快照哈希、每节点账本同步和自动 reopen 链。
+- 每个任务保留 RED/GREEN、聚焦测试和必要回归；完整功能只执行一次合并验证。
+- 普通标准任务不启动独立上下文；关键风险每功能最多一次独立代码审查，真实外部验收按需一次独立 QA。
+- `verification.md` 仅在跨会话、多任务交接或项目规则要求时写入一次简短功能证据。
+
 ## 验证命令
 
 在 PowerShell 中执行：
 
 ```powershell
 python C:\Users\17321\plugins\atu-workflow\tests\validate_workflow.py
+python C:\Users\17321\plugins\atu-workflow\tests\validate_simplified_standard.py
 python C:\Users\17321\plugins\atu-workflow\tests\validate_risk_adaptive.py --scope all
 python C:\Users\17321\plugins\atu-workflow\tests\validate_forced_quick.py --scope all
 ```
 
-预期：基础结构、风险自适应和显式 forced quick 合同均通过，无错误。
+预期：基础结构、标准审计精简、风险自适应和显式 forced quick 合同均通过，无错误。
 
 ```powershell
 Get-ChildItem C:\Users\17321\plugins\atu-workflow\skills -Directory | ForEach-Object {

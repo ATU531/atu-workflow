@@ -15,23 +15,13 @@ SUPPORT_SKILLS = {
     "atu-miniprogram-engineer",
     "atu-qa-engineer",
 }
-NODES = {
-    f"N{i}-{name}.md"
-    for i, name in enumerate(
-        [
-            "init",
-            "enter-feature",
-            "execute-task",
-            "review",
-            "mark-done",
-            "qa-eval",
-            "context",
-            "finish",
-        ],
-        start=1,
-    )
+STANDARD_STAGES = {
+    "S1-boundary.md",
+    "S2-implement.md",
+    "S3-verify.md",
+    "S4-close.md",
 }
-AI_REFERENCES = NODES | {"quick-execution.md", "standard-workflow.md"}
+AI_REFERENCES = STANDARD_STAGES | {"quick-execution.md", "standard-workflow.md"}
 PRD_REFERENCES = {"quick-spec-contract.md", "spec-contract.md", "standard-workflow.md"}
 QUICK_REFERENCES = {"forced-quick-workflow.md"}
 CHECKLISTS = {
@@ -62,6 +52,7 @@ require(
     AI_REFERENCES <= {path.name for path in node_dir.glob("*.md")},
     "missing atu-ai workflow reference",
 )
+require(not list(node_dir.glob("N*.md")), "legacy atu-ai node reference remains")
 
 prd_reference_dir = ROOT / "skills" / "atu-prd" / "references"
 require(

@@ -53,7 +53,7 @@ Use one current task snapshot and one combined verification pass:
 4. Fix implementation or test defects through Q2, then rerun this entire combined pass on the updated diff.
 5. Report unavailable real browser, device, credential, external-service, or human evidence as `NOT RUN` or `MANUAL REQUIRED`; never replace a required real boundary with a mock-backed pass.
 
-Do not create default independent specification-review, quality-review, or QA contexts in compact mode. If evidence indicates that independent gates or durable multi-session recovery are necessary, escalate to the standard workflow instead of recreating N4/N6 inside Q3.
+Do not create default independent specification-review, quality-review, or QA contexts in compact mode. If evidence indicates that proportional independent checks or durable multi-session recovery are necessary, escalate to the standard workflow instead of recreating those gates inside Q3.
 
 ## Q4: Close and report
 
@@ -66,7 +66,7 @@ Update only the selected compact file:
 - set `BLOCKED` when a required decision, environment, or verification boundary prevents completion; or
 - retain `ESCALATED` when strict promotion is required.
 
-Compact mode does not create a separate ledger, compute application/specification dual hashes, enter N7, scan unrelated features, or reopen historical standard tasks. It also does not authorize a commit or release action.
+Compact mode does not create a separate ledger, compute application/specification dual hashes, scan unrelated features, or recover historical standard tasks. It also does not authorize a commit or release action.
 
 Return:
 
