@@ -2,11 +2,10 @@ from pathlib import Path
 import re
 import sys
 
-from validate_reference_packaging import live_sources, validate_bundle
+from validate_reference_packaging import MAIN_SKILLS, live_sources, validate_bundle
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MAIN_SKILLS = {"atu-init", "atu-prd", "atu-ai", "atu-quick"}
 SUPPORT_SKILLS = {
     "atu-android-engineer",
     "atu-code-reviewer",

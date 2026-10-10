@@ -26,6 +26,7 @@
 - PRD work writes specifications only. It never implements application behavior.
 - Every material claim is traceable to an authoritative source or a confirmed answer.
 - An assumption remains an open question. A proposed option is not a decision.
+- Approved architecture supplies supplemental technical constraints, not a fourth feature authority document. Apply the [architecture contract](../../atu-architect/references/architecture-contract.md) when architecture is relevant; PRD authoring still writes only `specs/`.
 - Every feature task list conforms to the canonical active-task checkbox and counting rule below.
 - Feature dependencies form a directed acyclic graph and determine the recommended execution order.
 - IDs are permanent. Never renumber, recycle, or erase an ID after publication.
@@ -58,8 +59,9 @@ For an existing project, preserve prior batches and directories. Assign new feat
 - Include a readable `.pdf` or `.docx` only when the user explicitly names that file. Do not discover those formats implicitly.
 - Exclude paths or files identified as archive, backup, superseded, or generated output, including anything under `specs/`. Match these labels case-insensitively and record every exclusion in the PLAN source ledger.
 - If `docs/` is absent or no eligible source remains, stop and report the condition.
-- For one named requirement file, use only that file. Infer the project root from its `docs/` ancestor or repository evidence; ask when `specs/` placement remains ambiguous.
+- For one named requirement file, use only that file as business authority. Infer the project root from its `docs/` ancestor or repository evidence; ask when `specs/` placement remains ambiguous.
 - Record source paths, versions or dates, mode, explicit user confirmations, and exclusions. When eligible sources conflict, report both claims and the affected features; do not silently select one.
+- Keep `docs/architecture/` and other identified architecture documents out of business-source discovery. Separately discover applicable architecture through user references, existing specs, repository guidance, or that directory, including single-PRD mode. Record approved path/revision/confirmation in the existing PLAN ledger as supplemental technical context. Drafts are proposals, not authority; an architecture-only input needs its original business sources. Missing architecture files alone do not block routine legacy work.
 
 ## Status, checkbox, version, and ID conventions
 
@@ -310,6 +312,7 @@ Use every section. Design choices must follow repository evidence and must refer
 - Architecture: web client with HTTP API and existing session store
 - Governing guidance: repository `AGENTS.md`
 - Preserved contract: existing authentication error envelope
+- Architecture baseline: when applicable, reference the approved document path, revision, and relevant decision IDs/sections; otherwise cite existing repository evidence
 
 ## Affected layers and boundaries
 
@@ -388,6 +391,7 @@ Design checks:
 - Do not introduce a new framework, service, schema, or protocol without source evidence or confirmation.
 - Include unhappy paths, authorization, data lifecycle, verification, and rollback where relevant.
 - A technical recommendation remains in open questions until confirmed.
+- Reference applicable approved architecture without copying it wholesale. Explain local realization of its boundaries; resolve conflicts before publishing. Preserve baseline revisions and route changed architecture through `$atu-architect` and affected specs through change mode.
 
 ## tasks.md structure and example
 
@@ -501,7 +505,7 @@ Apply this sequence:
 
 1. Resolve the entry feature from the current PLAN index; a bare number may match exactly one `N.*` directory.
 2. Read `PLAN.md`, `LESSONS.md`, all three authority documents, and optional `verification.md` read-only for the entry feature. Inventory any other feature files without deleting or overwriting them.
-3. Follow dependency and shared-contract references to enumerate every affected feature before editing.
+3. Follow dependency and shared-contract references to enumerate every affected feature before editing. For an architecture revision, compare changed decisions and their consumers; only approved applicable supersessions affect specs. A draft or unrelated revision does not invalidate the whole plan.
 4. Compare the confirmed change with current IDs and classify each item as added, modified, retired, or unaffected.
 5. Run the blocking-question gate per affected feature. Organization-wide sign-out, for example, requires confirmed authorization, ownership, and audit behavior. A new blocked feature receives requirements/open questions only. A blocked change preserves every existing feature document and version row and publishes no next version. Mark either case `⏸ BLOCKED` and continue independent features.
 6. Append one event to the PLAN source ledger. Update the single current feature index in place; never append a duplicate feature row.
@@ -562,6 +566,7 @@ LESSONS.md: supersession row L-003 appended; prior rows unchanged
 - [ ] Conflicting source claims are reported with affected features and are not silently resolved.
 - [ ] Facts, confirmed decisions, open questions, and out-of-scope items are distinguishable.
 - [ ] No material decision is assumed; unresolved decisions follow the [blocking-question gate](#blocking-question-gate).
+- [ ] Applicable architecture references identify approved revision, confirmation evidence, and relevant decisions; architecture is not substituted for business requirements or allowed to silently supersede feature specs.
 - [ ] No application code or non-specification project file was changed.
 
 ### Feature graph and scope

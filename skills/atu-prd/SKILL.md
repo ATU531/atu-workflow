@@ -5,7 +5,7 @@ description: Turn a PRD or change request into ATU implementation specifications
 
 # ATU PRD
 
-Turn authoritative requirements into reviewable specifications without implementing business code. Select exactly one planning mode and read only that mode's reference completely before writing.
+Turn authoritative requirements into reviewable specifications without implementing business code. Check architecture needs, then select one planning mode and read its reference completely before writing specs.
 
 ## Common boundaries
 
@@ -16,6 +16,8 @@ Turn authoritative requirements into reviewable specifications without implement
 - A user may force standard mode. A request to save time or force compact mode never overrides a strict trigger. When classification is uncertain, use standard mode.
 
 ## Select one mode
+
+Before splitting features, check for a new system or consequential changes to module/shared-contract, data/transaction, deployment boundaries, or quality targets. Task count and strict risk categories alone do not require architecture. Reuse applicable approved architecture or sufficient existing boundaries for routine extensions. When material architectural decisions remain, switch explicitly to [$atu-architect](../atu-architect/SKILL.md), which writes design documents, not specs; wait for user confirmation before finalizing dependent specifications. If unavailable, report the handoff instead of inventing decisions. Preserve the original PRD source. Architecture is supplemental technical context, not new business scope. Explicit `$atu-quick` keeps its own route.
 
 Use **compact mode** only when repository evidence supports all of these conditions:
 

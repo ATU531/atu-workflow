@@ -6,7 +6,7 @@ Verify the complete feature diff after its tasks finish. This is one combined ga
 
 1. Re-read the feature contract, acceptance criteria, current repository status, complete feature diff, and task-level test evidence.
 2. Run the relevant feature tests, regressions, and repository-supported static, type, build, migration, or security checks affected by the diff.
-3. Self-review the complete diff against requirements, design, architecture, correctness, error handling, authorization, compatibility, concurrency or lifecycle behavior, readability, and test adequacy.
+3. Self-review the complete diff against requirements, design, applicable approved architecture decisions (module dependencies, data ownership, shared contracts), correctness, error handling, authorization, compatibility, concurrency or lifecycle behavior, readability, and test adequacy. This adds no separate architecture audit round.
 4. Build one feature acceptance matrix with current evidence for every criterion. Mark unavailable required evidence `NOT RUN`, `MANUAL REQUIRED`, or `BLOCKED` rather than substituting mocks or narrower tests.
 
 After a fix, rerun the affected checks and the final regressions needed to establish a coherent current result. Do not restart unrelated gates whose evidence was not invalidated.

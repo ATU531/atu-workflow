@@ -1,15 +1,15 @@
 {
   "name": "atu-workflow",
-  "version": "0.1.0+codex.20260914095403",
-  "description": "ATU project initialization, PRD decomposition, and spec-driven autonomous development workflows for Codex.",
+  "version": "0.1.0+codex.20261010",
+  "description": "ATU project initialization, architecture design, PRD decomposition, and spec-driven development workflows for Codex.",
   "author": {
     "name": "Personal"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "ATU Workflow",
-    "shortDescription": "Initialize projects, decompose PRDs, and execute specs.",
-    "longDescription": "Ports the ATU Claude workflow to Codex with project initialization, PRD-to-spec planning, role-based implementation, review, QA, and documentation synchronization.",
+    "shortDescription": "Design architecture, decompose PRDs, and execute specs.",
+    "longDescription": "ATU workflows with project initialization, proportional architecture design, PRD-to-spec planning, test-driven implementation, conditional review and QA, and documentation synchronization.",
     "developerName": "Personal",
     "category": "Productivity",
     "capabilities": [
@@ -18,6 +18,7 @@
     ],
     "defaultPrompt": [
       "Initialize this repository with $atu-init.",
+      "Design this system with $atu-architect before splitting specs.",
       "Turn the PRD into specs with $atu-prd.",
       "Execute the next spec task with $atu-ai.",
       "Force this coherent change through $atu-quick."

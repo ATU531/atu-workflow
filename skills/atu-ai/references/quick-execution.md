@@ -34,6 +34,8 @@ When the first test or implementation edit begins, set the compact file to `IN_P
 
 ## Q2: Implement test-first
 
+If the compact spec references architecture, check the referenced revision's approval and applicable decisions before editing; block affected work for a missing/conflicting/superseded reference and return to `$atu-prd`. A newer draft or unrelated revision alone is not a blocker. Do not create a baseline for routine compact work.
+
 1. Read the task, design, acceptance outcomes, target implementation, and effective project rules again at the edit boundary.
 2. Read only guidance needed for the changed boundary: [frontend](domains/frontend.md), [backend](domains/backend.md), [database](domains/database.md), or [verification](verification.md) for test-only work. Use `$atu-android-engineer` or `$atu-miniprogram-engineer` for native platform work. Ordinary edits need no extra role context; multiple relevant references are allowed. These references do not waive compact eligibility or add independent QA.
 3. Add or tighten the narrowest meaningful automated test and observe it fail for the expected missing behavior. If no safe automated test is feasible, record the reason and concrete manual evidence before implementation.

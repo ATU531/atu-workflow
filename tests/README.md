@@ -1,6 +1,8 @@
 # ATU Workflow 验证说明
 
-最近更新：2026-08-20
+最近更新：2026-10-10
+
+架构入口与 PRD/实施衔接回放：[architect-evidence.md](./architect-evidence.md)
 
 可复现回放证据：[behavior-evidence.md](./behavior-evidence.md)
 
@@ -67,11 +69,7 @@ Get-ChildItem C:\Users\17321\plugins\atu-workflow\skills -Directory | ForEach-Ob
 
 预期：每个 Skill 均通过 `quick_validate`。
 
-```powershell
-python C:\Users\17321\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py C:\Users\17321\plugins\atu-workflow
-```
-
-预期：插件整体校验通过，无错误。
+插件清单与本地引用检查使用仓库内 `tests/validate_reference_packaging.py`；早期 plugin-creator 脚本已不可用。Skill 元数据验证需要带 PyYAML 的解释器或隔离依赖目录。
 
 ## 最终人工边界
 

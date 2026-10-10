@@ -19,12 +19,12 @@ Before doing standard PRD work, read [the specification contract](spec-contract.
    - Record included and excluded sources, versions/dates, mode, and conflicts. Never silently choose between conflicting claims.
 
 2. **Discover project context without changing it.**
-   - Read applicable repository guidance, architecture/configuration evidence, manifests, and the relevant module outline.
+   - Read applicable repository guidance, architecture/configuration evidence, manifests, and the relevant module outline. Apply the entrypoint's architecture check before splitting. When a baseline exists or architecture is needed, use the [architecture contract](../../atu-architect/references/architecture-contract.md) for scope, approval, and handoff; read no design-pattern guide for a routine planning run.
    - Read `specs/PLAN.md`, `specs/LESSONS.md`, and relevant existing feature specifications. Remove already-covered requirements. Route a request that changes existing specified files, interfaces, data, or behavior to change mode rather than creating an overlapping feature.
 
 3. **Normalize the requirement.**
    - Identify goals, actors/permissions, journeys, functional and non-functional requirements, business invariants, data ownership/lifecycle, interfaces, constraints, exclusions, acceptance evidence, and questions.
-   - Separate confirmed, open, and out-of-scope items. Apply the blocking-question gate per feature; continue independent features with closed decisions.
+   - Separate confirmed, open, and out-of-scope items. Apply the blocking-question gate per feature; continue independent features with closed decisions. A PRD approval is not approval of new architectural recommendations. Do not finalize a dependent feature split/design/tasks until its consequential architecture decisions are confirmed.
 
 4. **Build the feature dependency graph.**
    - Split cohesive, independently verifiable delivery slices and estimate tasks before numbering features.
@@ -47,7 +47,7 @@ Before doing standard PRD work, read [the specification contract](spec-contract.
 
 6. **Apply new or change rules.**
    - New: allocate feature numbers after the current maximum; never reuse or renumber published IDs.
-   - Change: inspect the entry feature and every downstream/shared-contract impact before editing. Preserve completed `[x]` tasks byte-for-byte; use new task IDs for changes to completed behavior. Version only affected authority documents, retain dropped incomplete work as non-checkbox history, keep optional ledgers and unrecognized files unchanged, and synchronize PLAN dependencies/order/contracts/status. If a completed feature gains active work, set it to `待开发`; only implementation may set `🚧 开发中` or restore `✅ 完成`.
+   - Change: inspect the entry feature and every downstream/shared-contract impact before editing, including applicable approved architecture revisions. Preserve completed `[x]` tasks byte-for-byte; use new task IDs for changes to completed behavior. Version only affected authority documents, retain dropped incomplete work as non-checkbox history, keep optional ledgers and unrecognized files unchanged, and synchronize PLAN dependencies/order/contracts/status. If a completed feature gains active work, set it to `待开发`; only implementation may set `🚧 开发中` or restore `✅ 完成`.
    - Add another numbered feature when the canonical task limit or a distinct delivery slice requires it.
 
 7. **Run the consistency review.**

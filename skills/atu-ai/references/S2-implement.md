@@ -16,7 +16,7 @@ Use `$atu-android-engineer` or `$atu-miniprogram-engineer` for native platform w
 ## Implement test-first
 
 1. Add or tighten the narrowest meaningful automated test and observe the expected RED failure. If automation is not feasible, state why and define concrete manual evidence before changing behavior.
-2. Make the smallest implementation that satisfies the approved contract and existing architecture.
+2. Make the smallest implementation that satisfies the approved contract and its applicable approved architecture baseline; otherwise preserve existing architecture. An approved target may intentionally differ from current code. A new consequential architecture choice returns affected work to `$atu-prd`/`$atu-architect`, not an improvised implementation decision.
 3. Run the focused test to GREEN, then run relevant nearby regressions. Use repository-supported commands; do not introduce a tool only to manufacture a pass.
 4. Inspect the task diff for correctness, error paths, authorization boundaries, compatibility, readability, test adequacy, and accidental noise.
 5. Keep credentials, production data, dependency changes, destructive actions, and external writes within explicit authorization. Do not push, deploy, publish, migrate, or mutate production from this stage.

@@ -53,6 +53,7 @@ Use this exact section order:
 
 ## Reused contracts and evidence
 - <existing component/API/helper and repository evidence that makes it stable>
+- <applicable approved architecture path/revision/decisions, if one exists; do not create a baseline just for compact work>
 
 ## Compact eligibility and escalation triggers
 - Eligible because: <one task, closed decisions, focused verification, localized rollback>

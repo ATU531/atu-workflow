@@ -79,8 +79,9 @@ def require_strict_triggers(path: Path) -> None:
 
 
 PRD_GOLDEN_SHA256 = {
-    "skills/atu-prd/references/spec-contract.md": "654a8c163b8964d987b66fcd7003c2ff35a408396c27060cd614fcf42a635c8c",
-    "skills/atu-prd/references/standard-workflow.md": "8d9c43b74935e70894896fa8aba62bf4307ef498d9e5634f59408178205ede95",
+    # Reviewed architecture handoff revision; task/ID/blocking contracts remain unchanged.
+    "skills/atu-prd/references/spec-contract.md": "eea55f60081e5711e57b1233728013fa1ffc94cf47800d545ff6afec3e5661f7",
+    "skills/atu-prd/references/standard-workflow.md": "ba14d77ea55737e7f9f40f22f884c6c52688731cfd917287eb925ae8d1feb1e0",
 }
 
 

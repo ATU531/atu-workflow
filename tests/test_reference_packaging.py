@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import json
+import os
 import tempfile
 import unittest
 
@@ -24,7 +25,8 @@ class ReferencePackagingTests(unittest.TestCase):
         routes = []
         for relative in sorted(REQUIRED_REFERENCES):
             self.write(relative, "# Reference\nTask-specific project guidance.\n")
-            routes.append(f"[Guide]({Path(relative).relative_to('skills/atu-ai').as_posix()})")
+            target = Path(os.path.relpath(self.root / relative, self.root / "skills/atu-ai")).as_posix()
+            routes.append(f"[Guide]({target})")
         self.ai = self.root / "skills/atu-ai/SKILL.md"
         self.ai.write_text(self.ai.read_text(encoding="utf-8") + "\n".join(routes), encoding="utf-8")
 
@@ -39,6 +41,11 @@ class ReferencePackagingTests(unittest.TestCase):
         self.assertTrue(any(token in error for error in errors), errors)
 
     def test_complete_bundle_is_valid(self) -> None:
+        self.assertEqual(validate_bundle(self.root), [])
+
+    def test_architect_can_be_consumed_by_prd(self) -> None:
+        self.write("skills/atu-architect/SKILL.md", "# Architecture\n")
+        self.write("skills/atu-prd/SKILL.md", "Use $atu-architect; [architecture](../atu-architect/SKILL.md).\n")
         self.assertEqual(validate_bundle(self.root), [])
 
     def test_deleted_skill_invocation_in_live_metadata_is_rejected(self) -> None:

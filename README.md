@@ -1,12 +1,13 @@
 # ATU Workflow
 
-ATU Workflow 是个人 Codex 插件，用于把项目初始化、PRD 拆解和规格驱动开发串成可审计的工作流。插件移植自 `C:\Users\17321\.claude` 中的既有工作方式；该 Claude 源目录始终只读，不从中复制凭证，也不修改其内容。
+ATU Workflow 是个人 Codex 工作流，用于项目初始化、架构设计、PRD 拆解和规格驱动开发。源码仓库：[ATU531/atu-workflow](https://github.com/ATU531/atu-workflow)。支持整包插件和独立 Skills 两种安装方式。
 
 ## 入口
 
-Codex 通过 Skill 名称调用插件能力，四个主入口是：
+Codex 通过 Skill 名称调用能力，五个主入口是：
 
 - `$atu-init`：从仓库证据识别项目根与获准写入范围，增量创建或更新 `AGENTS.md` 等开发约定。只检查凭证文件是否存在，不读取 `.env`、密钥或证书内容；不凭空编造命令；默认不新建 Claude 兼容文件。
+- `$atu-architect`：为新系统或重要架构变化设计模块边界、数据归属、关键流程、技术取舍与演进方案；支持主动调用，也由 PRD 阶段按影响转入。架构建议经用户确认后再成为 specs 的技术依据。
 - `$atu-prd`：先按仓库证据自动选择快速或严格模式，不修改业务代码。边界清晰、复用稳定契约的小改动生成一个 `specs/quick/*.md`；高风险、含未决问题、多任务或范围不确定的需求仍生成 `PLAN.md`、`LESSONS.md` 和编号功能规格。
 - `$atu-ai`：识别规格类型后只加载对应执行流程。快速规格按 Q1 至 Q4 执行；标准规格按 S1 至 S4 完成边界确认、逐任务测试驱动实现、一次功能级合并验证和收尾恢复。独立审查与 QA 只在关键风险或真实验收边界需要时启用。
 - `$atu-quick`：仅在显式调用时启用，在同一次调用中生成或恢复一个 forced quick 规格并直接执行 Q1 至 Q4。权限、支付、迁移、公共 API 等类别不会自动升级，但缺少真实决定、必需证据或外部操作授权时仍会如实阻塞。
@@ -15,10 +16,23 @@ Codex 通过 Skill 名称调用插件能力，四个主入口是：
 
 ```text
 $atu-init D:\Workspace\psy_mini_program
+$atu-architect D:\Workspace\example "根据 docs/prd.md 设计系统架构"
 $atu-prd D:\Workspace\psy_mini_program\docs\C端心理测评小程序PRD.md
 $atu-ai D:\Workspace\psy_mini_program
 $atu-quick D:\Workspace\example "修改支付回调并补齐迁移"
 ```
+
+## 架构设计与规格衔接
+
+新系统或重要模块/共享契约/数据所有权/事务/部署边界变化，先做架构设计，再拆 specs：
+
+`PRD + 仓库证据 → $atu-architect → 用户确认 → $atu-prd → $atu-ai`
+
+默认产物是 `docs/architecture/<scope>.md`，区分 DRAFT 与 APPROVED 版本、需求来源、确认依据和适用范围。新系统设计整体边界；现有系统先核对真实代码，再明确保留、增加和调整的部分。架构模式和设计模式按问题选用，不默认引入微服务、事件总线或复杂抽象。
+
+已有适用的已确认架构直接复用；普通局部改动可依据现有代码继续，不补造架构文档。需求很长、多任务或涉及支付/权限本身，不等于必须重新设计架构。显式 `$atu-quick` 保留原有入口选择权。
+
+架构是补充技术约束，不替代原 PRD 或功能级 `design.md`。PLAN 与功能设计引用其批准版本和相关决定；未确认草案不进入可实施任务。架构修订保留旧批准版本，通过 PRD change-mode 只更新受影响规格，实施时在现有检查内核对，不新增默认独立审计。
 
 ## 风险自适应快速路径
 
@@ -54,7 +68,7 @@ Claude 原斜杠入口无法原样注册为 Codex 入口：Codex 插件发现的
 
 ## 专项 Skill 与按需参考
 
-插件保留四个主入口和三个专项 Skill，共七个独立入口：
+插件保留五个主入口和三个专项 Skill，共八个独立入口：
 
 - `atu-android-engineer`：Android、WebView 与 kiosk 实现和验证。
 - `atu-code-reviewer`：只读代码评审、缺陷与安全风险报告。
@@ -70,9 +84,26 @@ Claude 原斜杠入口无法原样注册为 Codex 入口：Codex 插件发现的
 | 测试任务、运行验收、独立 QA 交接 | [验证](skills/atu-ai/references/verification.md) |
 | 已验证行为对应的文档同步 | [文档](skills/atu-ai/references/documentation.md) |
 
-普通编辑无需额外角色上下文；跨边界任务可读多份相关参考，不强制“恰好一个领域技能”。独立 QA 仍由所选工作流和用户要求决定；读取验证参考不增加默认验收轮次。四个主入口、规格格式、状态与授权合同保持不变；原角色调用可改为相应主入口加具体任务说明。
+普通编辑无需额外角色上下文；跨边界任务可读多份相关参考，不强制“恰好一个领域技能”。独立 QA 仍由所选工作流和用户要求决定；读取验证参考不增加默认验收轮次。原有四个主入口的规格状态与授权合同保留；原角色调用可改为相应主入口加具体任务说明。
 
 ## 安装与加载
+
+### 独立 Skills（跨电脑使用）
+
+克隆本仓库，将 `skills/` 下八个完整目录一起复制到用户目录的 `.agents/skills/`，保留所有 `references/` 等子目录。不要只复制 `SKILL.md`，因为入口之间存在相对引用。已有同名目录时先比较并备份本地定制，再更新。
+
+```powershell
+git clone https://github.com/ATU531/atu-workflow.git
+# 将克隆目录 skills/ 下的完整 Skill 目录复制到：
+# Windows: C:\Users\你的用户名\.agents\skills\
+# macOS/Linux: 用户主目录/.agents/skills/
+```
+
+无需复制账号凭证、整个 `.codex/`、聊天记录或插件缓存。`.codex/skills/` 中若已有同名旧副本，应比较后同步，避免重复版本；新安装优先保留一个安装来源。发现与加载位置见 [Codex Skills 官方文档](https://developers.openai.com/codex/skills/)。
+
+### 可选 Marketplace 安装
+
+本机当前使用独立 Skills，以下保留个人 Marketplace 配置供选择；不要与同名独立 Skills 重复启用。
 
 - 插件源：`C:\Users\17321\plugins\atu-workflow`
 - 个人 Marketplace：`C:\Users\17321\.agents\plugins\marketplace.json`
@@ -86,7 +117,7 @@ codex plugin add atu-workflow@personal
 codex plugin list
 ```
 
-安装或重新安装后，必须新建一个 Codex 任务再调用入口；当前任务不会动态加载刚安装或刚更新的插件。
+更新后请新建一个 Codex 任务检查 `$atu-architect` 是否出现；必要时重启客户端。当前任务可能仍持有旧的发现元数据，不以修改源码成功代替入口发现验证。
 
 ## 结构
 
@@ -95,6 +126,7 @@ atu-workflow/
 ├─ .codex-plugin/plugin.json
 ├─ skills/
 │  ├─ atu-init/
+│  ├─ atu-architect/
 │  ├─ atu-prd/
 │  ├─ atu-ai/
 │  ├─ atu-quick/
@@ -124,7 +156,6 @@ Get-ChildItem C:\Users\17321\plugins\atu-workflow\skills -Directory |
     python C:\Users\17321\.codex\skills\.system\skill-creator\scripts\quick_validate.py $_.FullName
   }
 
-python C:\Users\17321\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py C:\Users\17321\plugins\atu-workflow
 ```
 
-前四条分别检查基础结构、精简标准执行、自动快速/严格路由和显式 forced quick 合同；引用校验检查七个入口、按需参考及其链接完整性，并用缺失文件/旧调用等反例验证检查器；随后逐一校验 Skill 元数据与结构，最后校验插件清单及整体目录。
+前四条分别检查基础结构、精简标准执行、自动快速/严格路由和显式 forced quick 合同；引用校验检查八个入口、清单打包范围、按需参考及其链接完整性，并用缺失文件/旧调用等反例验证检查器。Skill 元数据脚本需要 PyYAML，可在独立验证环境中安装；不要求修改共享 Python。架构行为回放及未验证项见 [验证记录](tests/architect-evidence.md)。

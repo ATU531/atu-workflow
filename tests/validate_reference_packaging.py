@@ -7,7 +7,7 @@ from urllib.parse import unquote, urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MAIN_SKILLS = {"atu-init", "atu-prd", "atu-ai", "atu-quick"}
+MAIN_SKILLS = {"atu-init", "atu-architect", "atu-prd", "atu-ai", "atu-quick"}
 SUPPORT_SKILLS = {
     "atu-android-engineer",
     "atu-miniprogram-engineer",
@@ -21,6 +21,8 @@ RETIRED_SKILLS = {
     "atu-doc-syncer",
 }
 REQUIRED_REFERENCES = {
+    "skills/atu-architect/references/architecture-contract.md",
+    "skills/atu-architect/references/design-guide.md",
     "skills/atu-ai/references/domains/frontend.md",
     "skills/atu-ai/references/domains/backend.md",
     "skills/atu-ai/references/domains/database.md",
@@ -135,7 +137,7 @@ def main() -> None:
     errors = validate_bundle(ROOT)
     if errors:
         raise AssertionError("\n".join(errors))
-    print("skill/reference packaging validation ok (7 skills, 5 migrated references)")
+    print(f"skill/reference packaging validation ok ({len(MAIN_SKILLS | SUPPORT_SKILLS)} skills, {len(REQUIRED_REFERENCES)} required references)")
 
 
 if __name__ == "__main__":
