@@ -49,7 +49,7 @@ Write `READY`, then set `IN_PROGRESS` only when the first test or implementation
 
 ## Q2: Implement test-first
 
-Load exactly one primary Skill: `$atu-frontend-engineer`, `$atu-backend-engineer`, `$atu-database-engineer`, `$atu-android-engineer`, `$atu-miniprogram-engineer`, or `$atu-qa-engineer` for test-only work. Crossing boundaries does not load more domain Skills.
+Read only guidance needed for the changed boundary: [frontend](../../atu-ai/references/domains/frontend.md), [backend](../../atu-ai/references/domains/backend.md), [database](../../atu-ai/references/domains/database.md), or [verification](../../atu-ai/references/verification.md) for test-only work. Use `$atu-android-engineer` or `$atu-miniprogram-engineer` for native platform work. Ordinary edits need no extra role context; use multiple references when the change needs them. These references do not override forced-quick routing or add independent QA.
 
 Add or tighten the narrowest meaningful automated test and observe its expected failure before changing behavior. If safe automation is infeasible, record why and the concrete manual evidence required. Make the smallest coherent implementation, avoid speculative abstractions and unrelated cleanup, run focused tests to green, run nearby regressions, and preserve unrelated work.
 
@@ -66,7 +66,7 @@ Record unavailable required real evidence as `NOT RUN` or `MANUAL REQUIRED`; moc
 
 ## Q4: Close truthfully
 
-Update only the forced file with changed paths, concise diff scope, exact commands, environments, exit codes, useful results, acceptance rows, and manual/external boundaries. Check `T-Q01` and set `DONE` only when every required acceptance result passes. Otherwise leave it unchecked and set `BLOCKED` with the smallest missing decision, evidence, or authorization and its owner.
+Record workflow status and execution evidence only in the forced file: changed paths, concise diff scope, exact commands, environments, exit codes, useful results, acceptance rows, and manual/external boundaries. When verified behavior changes require project documentation updates, use [documentation guidance](../../atu-ai/references/documentation.md) and update only affected docs within the authorized scope. Check `T-Q01` and set `DONE` only when every required acceptance result passes and required documentation is current. Otherwise leave it unchecked and set `BLOCKED` with the smallest missing decision, evidence, or authorization and its owner.
 
 ## Blocking and recovery
 
@@ -83,14 +83,6 @@ Quick reference:
 | Missing material decision | `BLOCKED` |
 | Required real check unavailable | `BLOCKED` with `NOT RUN` or `MANUAL REQUIRED` |
 | External or production action unnamed | Do not perform it; block only if acceptance requires it |
-
-Common mistakes:
-
-- Sending a closed strict category to standard mode instead of recording and continuing.
-- Treating `$atu-quick` as production or external-write authority.
-- Marking `DONE` while required real evidence is unavailable.
-
-Example: `$atu-quick Add payment-callback idempotency with a schema migration` records payment and migration risks, writes one forced file, and enters Q1-Q4; it does not run a production migration unless that action and target are explicitly authorized.
 
 ## Output
 

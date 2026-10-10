@@ -1,6 +1,6 @@
 {
   "name": "atu-workflow",
-  "version": "0.1.0+codex.20260820075110",
+  "version": "0.1.0+codex.20260914095403",
   "description": "ATU project initialization, PRD decomposition, and spec-driven autonomous development workflows for Codex.",
   "author": {
     "name": "Personal"

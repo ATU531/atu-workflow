@@ -1,6 +1,6 @@
 ---
 name: atu-code-reviewer
-description: Use when reviewing a local diff, commit, branch, pull request, task implementation, or feature for defects, security vulnerabilities, regressions, contract violations, and maintainability risks without implementing fixes.
+description: Review a requested code snapshot against ATU specifications and report actionable defects without editing.
 ---
 
 # Code Reviewer

@@ -1,6 +1,6 @@
 ---
 name: atu-android-engineer
-description: Use when implementing or changing a native Android Java or Kotlin app, especially WebView shells, kiosk or launcher behavior, Activities, Services, Receivers, ContentProviders, manifests, assets, preferences, native networking, permissions, or Gradle builds.
+description: Implement the native Android portion of an ATU specification, including WebView and kiosk behavior.
 ---
 
 # Android Engineer

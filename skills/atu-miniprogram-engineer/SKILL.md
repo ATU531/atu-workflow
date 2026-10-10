@@ -1,6 +1,6 @@
 ---
 name: atu-miniprogram-engineer
-description: Use when implementing or changing a native WeChat Mini Program built with WXML, WXSS, JavaScript or TypeScript, including pages, components, wx APIs, app.json, login, request integration, storage, privacy, subpackages, preview, or upload.
+description: Implement the native WeChat Mini Program portion of an ATU specification, with platform and release checks.
 ---
 
 # Mini Program Engineer

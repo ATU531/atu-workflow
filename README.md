@@ -52,18 +52,25 @@ $atu-ai D:\Workspace\example\specs\quick\20260814-small-change.md
 
 Claude 原斜杠入口无法原样注册为 Codex 入口：Codex 插件发现的是 `SKILL.md` 中以连字符命名的 Skill，并使用 `$atu-init` 这类名称调用；两者属于不同的命令注册模型。
 
-## 支持 Skill
+## 专项 Skill 与按需参考
 
-四个主入口可按任务需要使用八个专业支持 Skill：
+插件保留四个主入口和三个专项 Skill，共七个独立入口：
 
 - `atu-android-engineer`：Android、WebView 与 kiosk 实现和验证。
-- `atu-backend-engineer`：后端 API、鉴权、业务逻辑、队列与集成。
 - `atu-code-reviewer`：只读代码评审、缺陷与安全风险报告。
-- `atu-database-engineer`：模型、迁移、查询、事务与 Redis。
-- `atu-doc-syncer`：按已验证实现同步项目文档。
-- `atu-frontend-engineer`：Web 前端页面、状态、样式与可访问性。
 - `atu-miniprogram-engineer`：原生微信小程序页面、接口与隐私边界。
-- `atu-qa-engineer`：独立测试、验收证据与残余风险报告。
+
+其余工程指导由执行流程按实际任务读取，不再注册独立角色入口：
+
+| 任务边界 | 参考 |
+| --- | --- |
+| Web 页面、交互与浏览器验收 | [前端](skills/atu-ai/references/domains/frontend.md) |
+| API、服务集成、队列 | [后端](skills/atu-ai/references/domains/backend.md) |
+| 数据结构、迁移、事务、Redis | [数据库](skills/atu-ai/references/domains/database.md) |
+| 测试任务、运行验收、独立 QA 交接 | [验证](skills/atu-ai/references/verification.md) |
+| 已验证行为对应的文档同步 | [文档](skills/atu-ai/references/documentation.md) |
+
+普通编辑无需额外角色上下文；跨边界任务可读多份相关参考，不强制“恰好一个领域技能”。独立 QA 仍由所选工作流和用户要求决定；读取验证参考不增加默认验收轮次。四个主入口、规格格式、状态与授权合同保持不变；原角色调用可改为相应主入口加具体任务说明。
 
 ## 安装与加载
 
@@ -91,7 +98,10 @@ atu-workflow/
 │  ├─ atu-prd/
 │  ├─ atu-ai/
 │  ├─ atu-quick/
-│  └─ 八个专业支持 Skill
+│  ├─ atu-android-engineer/
+│  ├─ atu-code-reviewer/
+│  └─ atu-miniprogram-engineer/
+│     # 共享工程参考位于 atu-ai/references/domains/、verification.md 和 documentation.md
 └─ tests/
    ├─ validate_workflow.py
    └─ validate_forced_quick.py
@@ -106,6 +116,8 @@ python C:\Users\17321\plugins\atu-workflow\tests\validate_workflow.py
 python C:\Users\17321\plugins\atu-workflow\tests\validate_simplified_standard.py
 python C:\Users\17321\plugins\atu-workflow\tests\validate_risk_adaptive.py --scope all
 python C:\Users\17321\plugins\atu-workflow\tests\validate_forced_quick.py --scope all
+python C:\Users\17321\plugins\atu-workflow\tests\validate_reference_packaging.py
+python C:\Users\17321\plugins\atu-workflow\tests\test_reference_packaging.py
 
 Get-ChildItem C:\Users\17321\plugins\atu-workflow\skills -Directory |
   ForEach-Object {
@@ -115,4 +127,4 @@ Get-ChildItem C:\Users\17321\plugins\atu-workflow\skills -Directory |
 python C:\Users\17321\.codex\skills\.system\plugin-creator\scripts\validate_plugin.py C:\Users\17321\plugins\atu-workflow
 ```
 
-前四条分别检查基础结构、精简标准执行、自动快速/严格路由和显式 forced quick 合同；随后逐一校验 Skill 元数据与结构，最后校验插件清单及整体目录。
+前四条分别检查基础结构、精简标准执行、自动快速/严格路由和显式 forced quick 合同；引用校验检查七个入口、按需参考及其链接完整性，并用缺失文件/旧调用等反例验证检查器；随后逐一校验 Skill 元数据与结构，最后校验插件清单及整体目录。

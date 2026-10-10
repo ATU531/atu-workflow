@@ -35,7 +35,7 @@ When the first test or implementation edit begins, set the compact file to `IN_P
 ## Q2: Implement test-first
 
 1. Read the task, design, acceptance outcomes, target implementation, and effective project rules again at the edit boundary.
-2. Load only the smallest applicable domain skill: `$atu-frontend-engineer`, `$atu-backend-engineer`, `$atu-database-engineer`, `$atu-android-engineer`, `$atu-miniprogram-engineer`, or `$atu-qa-engineer` for test-only work.
+2. Read only guidance needed for the changed boundary: [frontend](domains/frontend.md), [backend](domains/backend.md), [database](domains/database.md), or [verification](verification.md) for test-only work. Use `$atu-android-engineer` or `$atu-miniprogram-engineer` for native platform work. Ordinary edits need no extra role context; multiple relevant references are allowed. These references do not waive compact eligibility or add independent QA.
 3. Add or tighten the narrowest meaningful automated test and observe it fail for the expected missing behavior. If no safe automated test is feasible, record the reason and concrete manual evidence before implementation.
 4. Make the smallest coherent change that satisfies the compact contract and existing architecture. Do not introduce speculative abstractions or unrelated cleanup.
 5. Run the focused test until it passes, then run the relevant nearby regression checks.
@@ -57,7 +57,7 @@ Do not create default independent specification-review, quality-review, or QA co
 
 ## Q4: Close and report
 
-Update only the selected compact file:
+Record workflow status and execution evidence only in the selected compact file:
 
 - list changed files and concise diff scope;
 - record exact commands, environments, exit codes, pass/fail/skip counts, and useful concise outcomes;
@@ -65,6 +65,8 @@ Update only the selected compact file:
 - check only `T-Q01` and set status `DONE` when all required local evidence passes;
 - set `BLOCKED` when a required decision, environment, or verification boundary prevents completion; or
 - retain `ESCALATED` when strict promotion is required.
+
+When verified behavior changes require project documentation updates, use [documentation guidance](documentation.md) and update only affected docs within the authorized scope before closure. Keep workflow evidence in the compact file.
 
 Compact mode does not create a separate ledger, compute application/specification dual hashes, scan unrelated features, or recover historical standard tasks. It also does not authorize a commit or release action.
 

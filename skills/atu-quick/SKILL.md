@@ -1,6 +1,6 @@
 ---
 name: atu-quick
-description: Use when the user explicitly invokes $atu-quick or explicitly chooses a forced fast path for one coherent change, including authorization, payment, migration, public API, external-service, production-configuration, cross-module, or cross-repository work.
+description: Run the explicitly requested $atu-quick workflow for one coherent change from specification through verification.
 ---
 
 # ATU Quick
@@ -13,7 +13,7 @@ Execute one coherent outcome end-to-end with one forced quick specification. Exp
 - Preserve staged, unstaged, and untracked work without resetting, cleaning, stashing, overwriting, or absorbing it.
 - Stop only for a missing material decision, incoherent outcomes, unavailable required acceptance evidence, or an unauthorized requested action.
 - Never infer commit, push, publish, deploy, real payment, production migration, deletion, or external-write authority from the entry name.
-- Load exactly one most-relevant ATU domain Skill during implementation.
+- Read boundary-specific references only when needed; use native platform Skills when the task needs their tooling. Do not impose a fixed number of domain contexts.
 
 ## Workflow
 

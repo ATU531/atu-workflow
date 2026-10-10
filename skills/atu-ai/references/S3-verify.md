@@ -21,9 +21,9 @@ Ordinary standard work uses the combined verification above. Add one independent
 - a public API or compatibility contract with real consumers;
 - an explicitly authorized production change.
 
-The independent reviewer receives the exact feature contract and current diff, works read-only, and reports only evidence-backed blocking findings. Other reasons for standard mode—multiple tasks, cross-module coordination, additive schema work, external integration, or a broad but reversible change—do not automatically require a separate reviewer.
+The independent reviewer uses `$atu-code-reviewer`, receives the exact feature contract and current diff, works read-only, and reports only evidence-backed blocking findings. Other reasons for standard mode—multiple tasks, cross-module coordination, additive schema work, external integration, or a broad but reversible change—do not automatically require a separate reviewer.
 
-Use independent QA only when acceptance depends on a real browser, device, payment provider, external service, human operation, or when the user explicitly requests it. Run it once for the feature, not once per task.
+Use independent QA only when acceptance depends on a real browser, device, payment provider, external service, human operation, or when the user explicitly requests it. Run it once for the feature, not once per task. Give that verifier the [verification guidance](verification.md), selected acceptance criteria, reviewed scope, and available test evidence; code review alone does not establish runtime acceptance.
 
 For a cross-session handoff or independent review, a commit or patch hash may pin the reviewed application snapshot. Do not compute a second specification hash or require hashes for a same-session combined check.
 

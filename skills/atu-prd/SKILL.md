@@ -1,6 +1,6 @@
 ---
 name: atu-prd
-description: Use when the user invokes $atu-prd, asks to turn a PRD or change request into an implementation specification, or needs requirements, design, tasks, acceptance outcomes, and open questions captured before coding.
+description: Turn a PRD or change request into ATU implementation specifications under specs/, with acceptance criteria.
 ---
 
 # ATU PRD

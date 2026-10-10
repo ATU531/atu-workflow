@@ -2,18 +2,15 @@ from pathlib import Path
 import re
 import sys
 
+from validate_reference_packaging import live_sources, validate_bundle
+
 
 ROOT = Path(__file__).resolve().parents[1]
 MAIN_SKILLS = {"atu-init", "atu-prd", "atu-ai", "atu-quick"}
 SUPPORT_SKILLS = {
     "atu-android-engineer",
-    "atu-backend-engineer",
     "atu-code-reviewer",
-    "atu-database-engineer",
-    "atu-doc-syncer",
-    "atu-frontend-engineer",
     "atu-miniprogram-engineer",
-    "atu-qa-engineer",
 }
 STANDARD_STAGES = {
     "S1-boundary.md",
@@ -72,12 +69,15 @@ require(
     "missing review checklist",
 )
 
-all_text = "\n".join(path.read_text(encoding="utf-8") for path in ROOT.rglob("*.md"))
+all_text = "\n".join(path.read_text(encoding="utf-8") for path in live_sources(ROOT))
 for forbidden in (r"Agent\s*\(", r"Skill\s*\(", r"codex:codex-rescue"):
     require(not re.search(forbidden, all_text), f"Claude-only call remains: {forbidden}")
 
 for main in MAIN_SKILLS:
     require(f"${main}" in all_text, f"missing Codex invocation ${main}")
+
+packaging_errors = validate_bundle(ROOT)
+require(not packaging_errors, "\n".join(packaging_errors))
 
 print("atu-workflow contract ok")
 sys.exit(0)

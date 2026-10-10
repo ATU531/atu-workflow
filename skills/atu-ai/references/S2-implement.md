@@ -4,7 +4,14 @@ Keep one active task and one coherent write boundary. Tasks with ordering, share
 
 ## Prepare
 
-Re-read the task, mapped requirements, relevant design decisions, acceptance criteria, current target files, effective `AGENTS.md`, and current diff. Load only the smallest applicable domain Skill. Do not load review or QA Skills by default during implementation.
+Re-read the task, mapped requirements, relevant design decisions, acceptance criteria, current target files, effective `AGENTS.md`, and current diff. Read only guidance needed for the changed boundary:
+
+- Web UI and browser acceptance: [Frontend](domains/frontend.md).
+- API, service integration, or queue behavior: [Backend](domains/backend.md).
+- Schema, migration, transaction, or Redis behavior: [Database](domains/database.md).
+- Test-only work or acceptance evidence: [Verification](verification.md).
+
+Use `$atu-android-engineer` or `$atu-miniprogram-engineer` for native platform work. Ordinary edits need no extra role context; a change spanning relevant boundaries may use more than one reference. Reading verification guidance does not create an independent QA pass; S3 decides when one is needed.
 
 ## Implement test-first
 

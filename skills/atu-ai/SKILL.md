@@ -1,6 +1,6 @@
 ---
 name: atu-ai
-description: Use when the user invokes $atu-ai or asks to continue implementation from an approved specs/PLAN.md, numbered feature specification set, or specs/quick compact specification.
+description: Implement approved ATU specifications from specs/PLAN.md, numbered feature folders, or specs/quick/.
 ---
 
 # ATU AI

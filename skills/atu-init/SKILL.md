@@ -1,6 +1,6 @@
 ---
 name: atu-init
-description: Use when the user invokes $atu-init, asks to create or rebuild repository-level AGENTS.md, wants to initialize or refresh repository-level AI development conventions such as coding, testing, security, or Git guidance, explicitly requests Claude-compatible initialization, or wants verified startup, test, build, and deploy commands captured during AI-guidance initialization.
+description: Create or refresh repository AGENTS.md from verified project commands, boundaries, and conventions.
 ---
 
 # ATU Init
